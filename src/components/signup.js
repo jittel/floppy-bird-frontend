@@ -1,13 +1,14 @@
 import React from 'react';
 
-export default function signup() {
+export default function Signup() {
     return(
         <div>
             <section className='pagecard'>
-                <input id='newUser'>Username</input>
-                <input id='newPassword'>Password</input>
-                <input id='passwordConfirm'>Confirm Password</input>
-                <input id='chickenName'>Name yo bird!</input>
+                <input id='newUser'></input>
+                <input id='newPassword'></input>
+                <input id='passwordConfirm'></input>
+                <input id='chickenName'></input>
+                <button id='submitButton'>Submit</button>
             </section>
         </div>
     )

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function loginSelection() {
+export default function IntroPage() {
     return(
         <div>
             <button id='login-button'>Checking on my Chicken! Login</button>

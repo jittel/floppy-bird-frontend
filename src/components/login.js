@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function login() {
+export default function Login() {
     return(
         <div>
             <section classname='pagecard'>
-                <input id='username-input'>Username</input>
-                <input id='password-input'>Password</input>
+                <input id='username-input'></input>
+                <input id='password-input'></input>
             </section>
         </div>
     )
