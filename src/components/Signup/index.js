@@ -8,7 +8,7 @@ export default function Signup() {
                 <input id='newPassword' type='text' placeholder='Password'></input>
                 <input id='passwordConfirm' type='text' placeholder='Confirm Password'></input>
                 <input id='chickenName' type='text' placeholder='Name Your chicken!'></input>
-                <button id='submitButton'>Submit</button>
+                <button className='submitButton'>Submit</button>
             </section>
         </div>
     )
