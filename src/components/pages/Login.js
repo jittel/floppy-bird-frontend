@@ -4,8 +4,8 @@ export default function Login() {
     return(
         <div>
             <section classname='pagecard'>
-                <input id='username-input'></input>
-                <input id='password-input'></input>
+                <input id='username-input' type='text' placeholder='Username'></input>
+                <input id='password-input' type='text' placeholder='Password'></input>
             </section>
         </div>
     )
