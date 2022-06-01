@@ -1,8 +1,8 @@
 import React from "react";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
-// import IntroPage from "./components/IntroPage";
-import Signup from "./components/signup";
+import IntroPage from "./components/IntroPage";
+import Signup from "./components/Signup";
 // import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
