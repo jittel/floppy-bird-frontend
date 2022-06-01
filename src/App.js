@@ -1,5 +1,5 @@
 import React from "react";
-import IntroPage from "./components/introPage";
+import IntroPage from "./components/IntroPage";
 // import Login from "./components/login";
 // import Signup from "./components/signup";
 // import Homepage from "./components/homepage";
@@ -8,8 +8,8 @@ function App(){
   return(
     <div>
       <IntroPage />
-      {/* <signup /> */}
-      {/* <login /> */}
+      {/* <Signup /> */}
+      {/* <Login /> */}
       {/* <Homepage /> */}
     </div>
   )
