@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "./components/login";
+import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 // import IntroPage from "./components/IntroPage";
 // import Signup from "./components/signup";
