@@ -1,8 +1,8 @@
 import React from "react";
-import IntroPage from "./components/IntroPage";
-// import Login from "./components/login";
-// import Signup from "./components/signup";
-// import Homepage from "./components/homepage";
+import IntroPage from "./components/pages/IntroPage";
+// import Login from "./components/pages/Login";
+// import Signup from "./components/pages/Signup";
+// import Homepage from "./components/pages/Homepage";
 
 function App(){
   return(
