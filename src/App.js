@@ -1,17 +1,24 @@
 import React from "react";
-import IntroPage from "./components/pages/IntroPage";
-// import Login from "./components/pages/Login";
-// import Signup from "./components/pages/Signup";
-// import Homepage from "./components/pages/Homepage";
+import Login from "./components/Login";
+import Homepage from "./components/Homepage";
+// import IntroPage from "./components/IntroPage";
+// import Signup from "./components/signup";
+// import ReactDOM from "react-dom/client";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
-function App(){
-  return(
-    <div>
-      <IntroPage />
-      {/* <Signup /> */}
-      {/* <Login /> */}
-      {/* <Homepage /> */}
-    </div>
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+    // <Homepage />
   )
 }
 
