@@ -1,0 +1,8 @@
+body {
+    background-color: rgb(107, 141, 56);
+}
+
+.borgor {
+    display: flex;
+    flex-wrap: wrap;
+}
