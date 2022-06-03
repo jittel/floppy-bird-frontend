@@ -2,14 +2,14 @@ body{
     background-color: green;
 }
 
-div{
+.btns{
     display:flex;
     align-items:center;
     justify-content: center;
     height: 100vh;
 }
 
-button{
+#login-button{
     background-color: yellow;
     color: black;
     font-weight: bold;
@@ -27,7 +27,7 @@ button{
     transition: ease-out 1s;
 }
 
-button:hover{
+#login-button:hover{
     box-shadow: inset 500px 0 0 0 white;
     cursor: pointer;
 }
