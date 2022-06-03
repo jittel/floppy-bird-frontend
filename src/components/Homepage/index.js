@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
-import { motion, useDragControls } from "framer-motion";
+import { motion } from "framer-motion";
 import borgor from "../assets/borgor.png";
+import './Style.css'
 
 
 export default function Homepage(){
@@ -12,7 +13,7 @@ export default function Homepage(){
         </motion.div>
             <motion.img drag 
         dragConstraints={windowdim}
-         src={borgor} alt="burger stock"></motion.img>
+         src={borgor} alt="burger stock" className="borgor"></motion.img>
     </div>
     
    )
