@@ -2,7 +2,7 @@ body{
     background-color: green;
 }
 
-div{
+.btns {
     display:flex;
     align-items:center;
     justify-content: center;
@@ -10,7 +10,7 @@ div{
 }
 
 
-button{
+.submitButton{
     background-color: yellow;
     color: black;
     font-weight: bold;
@@ -26,7 +26,7 @@ button{
     transition: ease-out 1s;
 }
 
-button:hover{
+.submitButton:hover{
     box-shadow: inset 500px 0 0 0 white;
     cursor: pointer;
 }
