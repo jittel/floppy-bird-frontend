@@ -16,6 +16,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Collapse from '@mui/material/Collapse';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 
 
 const drawerWidth = 240;
@@ -76,6 +79,13 @@ export default function Store() {
     setOpen(false);
   };
 
+  // Nested List
+  const [visible, setVisible] = React.useState(true);
+  const handleNestClick = () => {
+    setVisible(!visible);
+  };
+  //
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -118,15 +128,28 @@ export default function Store() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Hats', 'Clothes', 'Shoes', 'Environment'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemText primary={text} />
+          <ListItemButton onClick={handleNestClick}>
+            <ListItemText primary="Hats" />
+              {visible ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={!visible} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl:4 }}>
+                <ListItemText primary="Cowboy" />
               </ListItemButton>
-            </ListItem>
-          ))}
+            </List>
+          </Collapse>
         </List>
       </Drawer>
     </Box>
   );
 }
+
+
+// {['Hats', 'Clothes', 'Shoes', 'Environment'].map((text, index) => (
+//   <ListItem key={text} disablePadding>
+//     <ListItemButton>
+//       <ListItemText primary={text} />
+//     </ListItemButton>
+//   </ListItem>
+// ))}
