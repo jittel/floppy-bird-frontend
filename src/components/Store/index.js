@@ -19,6 +19,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 
 
 const drawerWidth = 240;
@@ -130,11 +132,14 @@ export default function Store() {
         <List>
           <ListItemButton onClick={handleNestClick}>
             <ListItemText primary="Hats" />
-              {visible ? <ExpandLess /> : <ExpandMore />}
+              {visible ? <ExpandMore /> : <ExpandLess />}
           </ListItemButton>
           <Collapse in={!visible} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl:4 }}>
+                <ListItemAvatar>
+                  <Avatar alt="cowbow hat" src='../../assets/borgor.png' />
+                </ListItemAvatar>
                 <ListItemText primary="Cowboy" />
               </ListItemButton>
             </List>
