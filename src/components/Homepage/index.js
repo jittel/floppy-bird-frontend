@@ -20,15 +20,15 @@ export default function Homepage() {
                 <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken"></img>
                 <motion.img drag
                     dragConstraints={windowdim}
-                    src={require("../assets/hat/hat_cap.png")} alt="burger stock" className="borgor" id="hat">
+                    src={hats.crown} alt="burger stock" className="borgor" id="hat">
                 </motion.img>
                 <motion.img drag
                     dragConstraints={windowdim}
-                    src={require("../assets/shoes/shoes_boots_with_the_fur.png")} alt="burger stock" className="borgor" id="shoe">
+                    src={shoes.basketball_shoes} alt="burger stock" className="borgor" id="shoe">
                 </motion.img>
                 <motion.img drag
                     dragConstraints={windowdim}
-                    src={require("../assets/arm/arms_yas.png")} alt="burger stock" className="borgor" id="arm">
+                    src={arms.basketball} alt="burger stock" className="borgor" id="arm">
                 </motion.img>
             </motion.div>
         </div>
