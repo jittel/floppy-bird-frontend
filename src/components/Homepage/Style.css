@@ -1,0 +1,14 @@
+
+.chicken {
+    z-index:1;
+}
+
+body {
+    background-color: rgb(107, 141, 56);
+}
+
+.borgor {
+    display: flex;
+    flex-wrap: wrap;
+    z-index:2;
+}
