@@ -139,21 +139,18 @@ export default function Store() {
             <ListItemText primary="Hats" />
               {visible ? <ExpandMore /> : <ExpandLess />}
           </ListItemButton>
-
           <Collapse in={!visible} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-
               <ListItemButton sx={{ pl:2 }}>
                 <ListItemAvatar>
                   <Avatar 
-                    alt="cap hat" 
+                    alt="cap" 
                     src={hats.cap} 
                     sx={{ width: 56, height: 56 }}
                     />
                 </ListItemAvatar>
                 <ListItemText primary="Cap"/>
               </ListItemButton>
-
               <ListItemButton sx={{ pl:2 }}>
                 <ListItemAvatar>
                   <Avatar 
@@ -163,6 +160,46 @@ export default function Store() {
                     />
                 </ListItemAvatar>
                 <ListItemText primary="Cowboy Hat"/>
+              </ListItemButton>
+              <ListItemButton sx={{ pl:2 }}>
+                <ListItemAvatar>
+                  <Avatar 
+                    alt="crown" 
+                    src={hats.crown} 
+                    sx={{ width: 56, height: 56 }}
+                    />
+                </ListItemAvatar>
+                <ListItemText primary="Crown"/>
+              </ListItemButton>
+              <ListItemButton sx={{ pl:2 }}>
+                <ListItemAvatar>
+                  <Avatar 
+                    alt="flower crown" 
+                    src={hats.flower} 
+                    sx={{ width: 56, height: 56 }}
+                    />
+                </ListItemAvatar>
+                <ListItemText primary="Flower Crown"/>
+              </ListItemButton>
+              <ListItemButton sx={{ pl:2 }}>
+                <ListItemAvatar>
+                  <Avatar 
+                    alt="hair" 
+                    src={hats.hair} 
+                    sx={{ width: 56, height: 56 }}
+                    />
+                </ListItemAvatar>
+                <ListItemText primary="Hair"/>
+              </ListItemButton>
+              <ListItemButton sx={{ pl:2 }}>
+                <ListItemAvatar>
+                  <Avatar 
+                    alt="spinny hat" 
+                    src={hats.spinny} 
+                    sx={{ width: 56, height: 56 }}
+                    />
+                </ListItemAvatar>
+                <ListItemText primary="Spinny Hat"/>
               </ListItemButton>
             </List>
           </Collapse>
