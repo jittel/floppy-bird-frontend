@@ -11,10 +11,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-import arms from "../assets/arms/index.js";
-import hats from "../assets/hats/index.js";
-import shoes from "../assets/shoes/index.js";
 import HatStore from '../HatStore';
+import ShoeStore from '../ShoeStore';
+import ItemStore from '../ItemStore';
 
 
 const drawerWidth = 240;
@@ -115,6 +114,8 @@ export default function Store() {
         </DrawerHeader>
         <Divider />
         <HatStore />
+        <ShoeStore />
+        <ItemStore />
       </Drawer>
     </Box>
   );

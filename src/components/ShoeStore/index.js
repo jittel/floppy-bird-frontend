@@ -9,9 +9,9 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
-import hats from "../assets/hats/index.js";
+import shoes from "../assets/shoes/index.js";
 
-export default function HatStore() {
+export default function ShoeStore() {
 
   const [visible, setVisible] = React.useState(true);
   const handleNestClick = () => {
@@ -21,7 +21,7 @@ export default function HatStore() {
   return (
     <List>
       <ListItemButton onClick={handleNestClick}>
-        <ListItemText primary="Hats" />
+        <ListItemText primary="Shoes" />
           {visible ? <ExpandMore /> : <ExpandLess />}
       </ListItemButton>
       <Collapse in={!visible} timeout="auto" unmountOnExit>
@@ -29,62 +29,62 @@ export default function HatStore() {
           <ListItemButton sx={{ pl:2 }}>
             <ListItemAvatar>
               <Avatar 
-                alt="cap" 
-                src={hats.cap} 
+                alt="basketball shoes" 
+                src={shoes.basketball_shoes} 
                 sx={{ width: 56, height: 56 }}
                 />
             </ListItemAvatar>
-            <ListItemText primary="Cap"/>
+            <ListItemText primary="Basketball Shoes"/>
           </ListItemButton>
           <ListItemButton sx={{ pl:2 }}>
             <ListItemAvatar>
               <Avatar 
-                alt="cowboy hat" 
-                src={hats.cowboy} 
+                alt="boots with the fur" 
+                src={shoes.boots_with_the_fur} 
                 sx={{ width: 56, height: 56 }}
                 />
             </ListItemAvatar>
-            <ListItemText primary="Cowboy Hat"/>
+            <ListItemText primary="Boots with the Fur"/>
           </ListItemButton>
           <ListItemButton sx={{ pl:2 }}>
             <ListItemAvatar>
               <Avatar 
-                alt="crown" 
-                src={hats.crown} 
+                alt="cowboy boots" 
+                src={shoes.cowboy_boots} 
                 sx={{ width: 56, height: 56 }}
                 />
             </ListItemAvatar>
-            <ListItemText primary="Crown"/>
+            <ListItemText primary="Cowboy Boots"/>
           </ListItemButton>
           <ListItemButton sx={{ pl:2 }}>
             <ListItemAvatar>
               <Avatar 
-                alt="flower crown" 
-                src={hats.flower} 
+                alt="crocs" 
+                src={shoes.crocs} 
                 sx={{ width: 56, height: 56 }}
                 />
             </ListItemAvatar>
-            <ListItemText primary="Flower Crown"/>
+            <ListItemText primary="Crocs"/>
           </ListItemButton>
           <ListItemButton sx={{ pl:2 }}>
             <ListItemAvatar>
               <Avatar 
-                alt="hair" 
-                src={hats.hair} 
+                alt="platforms" 
+                src={shoes.platform} 
                 sx={{ width: 56, height: 56 }}
                 />
             </ListItemAvatar>
-            <ListItemText primary="Hair"/>
+            <ListItemText primary="Platforms"/>
           </ListItemButton>
           <ListItemButton sx={{ pl:2 }}>
             <ListItemAvatar>
               <Avatar 
-                alt="spinny hat" 
-                src={hats.spinny} 
+                alt="slides" 
+                src={shoes.slides} 
                 sx={{ width: 56, height: 56 }}
                 />
             </ListItemAvatar>
-            <ListItemText primary="Spinny Hat"/>
+            <ListItemText primary="Slides"/>
           </ListItemButton>
         </List>
       </Collapse>
