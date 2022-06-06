@@ -13,17 +13,6 @@ export default function Homepage() {
         setInterval(() =>{
             setCount(eggCount + 1);
         }, 5000)
-//    return(
-//     <div style={{width: "100vw", height: "100vh", overflow: "hidden"}} ref={windowdim}>
-//         <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }}>
-//             <img src={require("../assets/yicken.png")} alt="yicken"></img>
-//         </motion.div>
-//             <motion.img drag 
-//         dragConstraints={windowdim}
-//          src={borgor} alt="burger stock" className="borgor"></motion.img>
-        
-//     </div>
-//    )
     function changeHat() {
         var armEl = document.getElementById('arm')
         armEl.src=arms.basketball
