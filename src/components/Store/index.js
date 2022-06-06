@@ -4,27 +4,17 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import CssBaseline from '@mui/material/CssBaseline';
-import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Collapse from '@mui/material/Collapse';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
 
 import arms from "../assets/arms/index.js";
 import hats from "../assets/hats/index.js";
 import shoes from "../assets/shoes/index.js";
+import HatStore from '../HatStore';
 
 
 const drawerWidth = 240;
@@ -85,19 +75,10 @@ export default function Store() {
     setOpen(false);
   };
 
-  // Nested List
-  const [visible, setVisible] = React.useState(true);
-  const handleNestClick = () => {
-    setVisible(!visible);
-  };
-  //
-
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       <AppBar position="fixed" open={open} >
         <Toolbar>
-
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -133,87 +114,8 @@ export default function Store() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          {/* {Hats} */}
-          <ListItemButton onClick={handleNestClick}>
-            <ListItemText primary="Hats" />
-              {visible ? <ExpandMore /> : <ExpandLess />}
-          </ListItemButton>
-          <Collapse in={!visible} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton sx={{ pl:2 }}>
-                <ListItemAvatar>
-                  <Avatar 
-                    alt="cap" 
-                    src={hats.cap} 
-                    sx={{ width: 56, height: 56 }}
-                    />
-                </ListItemAvatar>
-                <ListItemText primary="Cap"/>
-              </ListItemButton>
-              <ListItemButton sx={{ pl:2 }}>
-                <ListItemAvatar>
-                  <Avatar 
-                    alt="cowboy hat" 
-                    src={hats.cowboy} 
-                    sx={{ width: 56, height: 56 }}
-                    />
-                </ListItemAvatar>
-                <ListItemText primary="Cowboy Hat"/>
-              </ListItemButton>
-              <ListItemButton sx={{ pl:2 }}>
-                <ListItemAvatar>
-                  <Avatar 
-                    alt="crown" 
-                    src={hats.crown} 
-                    sx={{ width: 56, height: 56 }}
-                    />
-                </ListItemAvatar>
-                <ListItemText primary="Crown"/>
-              </ListItemButton>
-              <ListItemButton sx={{ pl:2 }}>
-                <ListItemAvatar>
-                  <Avatar 
-                    alt="flower crown" 
-                    src={hats.flower} 
-                    sx={{ width: 56, height: 56 }}
-                    />
-                </ListItemAvatar>
-                <ListItemText primary="Flower Crown"/>
-              </ListItemButton>
-              <ListItemButton sx={{ pl:2 }}>
-                <ListItemAvatar>
-                  <Avatar 
-                    alt="hair" 
-                    src={hats.hair} 
-                    sx={{ width: 56, height: 56 }}
-                    />
-                </ListItemAvatar>
-                <ListItemText primary="Hair"/>
-              </ListItemButton>
-              <ListItemButton sx={{ pl:2 }}>
-                <ListItemAvatar>
-                  <Avatar 
-                    alt="spinny hat" 
-                    src={hats.spinny} 
-                    sx={{ width: 56, height: 56 }}
-                    />
-                </ListItemAvatar>
-                <ListItemText primary="Spinny Hat"/>
-              </ListItemButton>
-            </List>
-          </Collapse>
-        </List>
+        <HatStore />
       </Drawer>
     </Box>
   );
 }
-
-
-// {['Hats', 'Clothes', 'Shoes', 'Environment'].map((text, index) => (
-//   <ListItem key={text} disablePadding>
-//     <ListItemButton>
-//       <ListItemText primary={text} />
-//     </ListItemButton>
-//   </ListItem>
-// ))}
