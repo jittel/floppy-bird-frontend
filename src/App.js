@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Login from "./components/Login";
-import Homepage from "./components/Homepage";
 import IntroPage from "./components/IntroPage";
 import Signup from "./components/Signup";
 import Store from "./components/Store";
-import Pages from "./components/Pages";
+import Homepage from "./pages/Homepage";
 
 
 import API from '../src/utils/API'
@@ -58,7 +57,7 @@ function App() {
         <Routes>
           {/* note: intro page should be default but right now its set to HomePage for convenience */}
           <Route path="/" element={<IntroPage />} />
-          <Route path="/homepage" element={<Pages />} />
+          <Route path="/homepage" element={<Homepage />} />
           <Route path="/login" element={<Login login={handleLoginSubmit} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/store" element={<Store />} />
