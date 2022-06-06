@@ -1,6 +1,11 @@
 import React from 'react';
 
 export default function Accesories() {
+
+    // function hatChoices(){
+
+    // }
+
     return(
         <div className='accCard' id='storeCard'>
             <button className='accBtn' id='hatsBtn'>Hats!</button>

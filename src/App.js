@@ -4,6 +4,9 @@ import Homepage from "./components/Homepage";
 import IntroPage from "./components/IntroPage";
 import Signup from "./components/Signup";
 import Store from "./components/Store";
+import Pages from "./components/Pages";
+
+
 import API from '../src/utils/API'
 import {
   BrowserRouter,

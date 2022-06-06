@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import arms from "../assets/arms/index.js";
 import hats from "../assets/hats/index.js";
@@ -18,30 +18,27 @@ export default function Homepage() {
     const userArms =userSelectedArms
     const userShoes =  userSelectedShoes
 
-function accessoriesMenu() {
-    const menuEl = document.getElementById("storeMenu")
-    menuEl.appendChild(<Accessories />)
-}
 
 
-    let isFed = false;
+    // let isFed = false;
     let [eggCount, setCount] = useState(0);
-        if(isFed === false){
-            setInterval(() =>{
-                setCount(eggCount++);
+        // if(isFed === false){
+            useEffect(() => {
+                setTimeout(() =>{
+                console.log('time')
+                setCount(eggCount + 1);
             }, 5000)
-        } else {
-            setInterval(() =>{
-                setCount(eggCount++);
-            }, 7000)
-        }
+        }, [eggCount])
+        // } else {
+        //     setTimeout(() =>{
+        //         setCount(eggCount++);
+        //     }, 7000)
+        // }
     
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
                 <p className="egg-counter">Number of eggs: {eggCount}</p>
-                <Accessories id="storeMenu">
-                <button id="selectedAccessories" onClick={accessoriesMenu}>Change Accesories</button>
-                </Accessories>
+                
             {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
             <motion.div id="chickenCont">
                 <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
