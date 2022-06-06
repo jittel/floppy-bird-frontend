@@ -5,6 +5,7 @@ import IntroPage from "./components/IntroPage";
 import Signup from "./components/Signup";
 import Store from "./components/Store";
 import HatStore from "./components/HatStore";
+import Pages from "./components/Pages";
 
 import API from '../src/utils/API'
 // import ReactDOM from "react-dom/client";
@@ -57,7 +58,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* note: intro page should be default but right now its set to HomePage for convenience */}
-        <Route path="/Homepage" element={<Homepage />} />
+        <Route path="/Homepage" element={<Pages />} />
         <Route path="/" element={<IntroPage />} />
         <Route path="/login" element={<Login login={handleLoginSubmit} />} />
         <Route path="/Signup" element={<Signup />} />

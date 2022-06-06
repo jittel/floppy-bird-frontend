@@ -10,7 +10,7 @@ body{
 }
 
 
-button{
+.signupButton{
     background-color: yellow;
     color: black;
     font-weight: bold;
