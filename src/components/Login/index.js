@@ -27,7 +27,7 @@ export default function Login(props) {
             <form onSubmit={loginSubmit}>
                 <input value={loginData.username} type="text" name="loginUsername" placeholder="username" onChange={(e) => setLoginData({ ...loginData, username: e.target.value })} />
                 <input value={loginData.password} type="password" name="loginPassword" onChange={(e) => setLoginData({ ...loginData, password: e.target.value })} />
-                <a href="/Homepage"><button className='submitButton'>Login</button></a>
+                <button className='submitButton'>Login</button>
             </form>
         </div>
     )

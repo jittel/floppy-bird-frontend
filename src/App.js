@@ -6,12 +6,12 @@ import Signup from "./components/Signup";
 import Store from "./components/Store";
 import HatStore from "./components/HatStore";
 import API from '../src/utils/API'
-// import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
+const AuthorizationContext = React.createContext();
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,13 +20,9 @@ function App() {
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
     if (savedToken) {
-      setToken(savedToken)
-    }
-  }, [])
-  useEffect(() => {
-    if (token) {
-      API.verify(token).then(userData => {
+      API.verify(savedToken).then(userData => {
         if (userData.userId) {
+          setToken(savedToken)
           setIsLoggedIn(true);
           setUserId(userData.userId)
         } else {
@@ -38,13 +34,14 @@ function App() {
       setIsLoggedIn(false);
       setUserId(null)
     }
-  }, [token])
+  }, [])
   const handleLoginSubmit = loginData => {
     console.log("handle login", loginData)
     API.login(loginData).then(data => {
       if (data.token) {
         setToken(data.token)
         localStorage.setItem("token", data.token)
+        window.location.replace('/homepage')
       }
     })
   }
@@ -52,19 +49,21 @@ function App() {
   //   setToken(null);
   //   localStorage.removeItem("token")
   // }
+  console.log(token)
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* note: intro page should be default but right now its set to HomePage for convenience */}
-        <Route path="/Homepage" element={<Homepage />} />
-        <Route path="/" element={<IntroPage />} />
-        <Route path="/login" element={<Login login={handleLoginSubmit} />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/store" element={<Store />} />
-        <Route path="/store/hats" element={<HatStore />} />
-      </Routes>
-    </BrowserRouter>
-    // <Homepage />
+    <AuthorizationContext.Provider value={token}>
+      <BrowserRouter>
+        <Routes>
+          {/* note: intro page should be default but right now its set to HomePage for convenience */}
+          {/* <Route path="/" element={<IntroPage />} /> */}
+          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/login" element={<Login login={handleLoginSubmit} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/store/hats" element={<HatStore />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthorizationContext.Provider>
   )
 }
 
