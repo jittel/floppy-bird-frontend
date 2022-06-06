@@ -4,7 +4,6 @@ import Homepage from "./components/Homepage";
 import IntroPage from "./components/IntroPage";
 import Signup from "./components/Signup";
 import Store from "./components/Store";
-import HatStore from "./components/HatStore";
 import API from '../src/utils/API'
 import {
   BrowserRouter,
@@ -60,7 +59,7 @@ function App() {
           <Route path="/login" element={<Login login={handleLoginSubmit} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/store" element={<Store />} />
-          <Route path="/store/hats" element={<HatStore />} />
+          {/* <Route path="/store/hats" element={<HatStore />} /> */}
         </Routes>
       </BrowserRouter>
     </AuthorizationContext.Provider>
