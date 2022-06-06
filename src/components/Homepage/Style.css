@@ -7,14 +7,13 @@ body {
     background-color: rgb(107, 141, 56);
 }
 
-.accessory {
-    display: flex;
+.borgor {
+    display: grid;
     flex-wrap: wrap;
     z-index:2;
-    flex-direction: row;
 }
 
-.imageContainer {
+#chickenCont {
     display: grid;
     justify-content: center;
 }
