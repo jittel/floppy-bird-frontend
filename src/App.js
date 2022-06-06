@@ -4,8 +4,6 @@ import Homepage from "./components/Homepage";
 import IntroPage from "./components/IntroPage";
 import Signup from "./components/Signup";
 import Store from "./components/Store";
-import HatStore from "./components/HatStore";
-
 import API from '../src/utils/API'
 // import ReactDOM from "react-dom/client";
 import {
@@ -62,7 +60,6 @@ function App() {
         <Route path="/login" element={<Login login={handleLoginSubmit} />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/store" element={<Store />} />
-        <Route path="/store/hats" element={<HatStore />} />
       </Routes>
     </BrowserRouter>
     // <Homepage />
