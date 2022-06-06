@@ -7,8 +7,14 @@ body {
     background-color: rgb(107, 141, 56);
 }
 
-.borgor {
+.accessory {
     display: flex;
     flex-wrap: wrap;
     z-index:2;
+    flex-direction: row;
+}
+
+.imageContainer {
+    display: grid;
+    justify-content: center;
 }
