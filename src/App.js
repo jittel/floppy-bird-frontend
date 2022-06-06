@@ -56,9 +56,8 @@ function App() {
     <AuthorizationContext.Provider value={token}>
       <BrowserRouter>
         <Routes>
-          {/* note: intro page should be default but right now its set to HomePage for convenience */}
-          {/* <Route path="/" element={<IntroPage />} /> */}
-          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/" element={<IntroPage />} />
+          <Route path="/homepage" element={<Pages />} />
           <Route path="/login" element={<Login login={handleLoginSubmit} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/store" element={<Store />} />
