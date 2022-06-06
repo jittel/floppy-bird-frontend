@@ -5,6 +5,7 @@ import IntroPage from "./components/IntroPage";
 import Signup from "./components/Signup";
 import Store from "./components/Store";
 import HatStore from "./components/HatStore";
+
 // import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,

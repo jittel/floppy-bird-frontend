@@ -8,7 +8,12 @@ body {
 }
 
 .borgor {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
     z-index:2;
+}
+
+#chickenCont {
+    display: grid;
+    justify-content: center;
 }
