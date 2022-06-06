@@ -57,7 +57,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* note: intro page should be default but right now its set to HomePage for convenience */}
-          {/* <Route path="/" element={<IntroPage />} /> */}
+          <Route path="/" element={<IntroPage />} />
           <Route path="/homepage" element={<Homepage />} />
           <Route path="/login" element={<Login login={handleLoginSubmit} />} />
           <Route path="/signup" element={<Signup />} />
