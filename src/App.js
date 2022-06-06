@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Login from "./components/Login";
-import Homepage from "./components/Homepage";
 import IntroPage from "./components/IntroPage";
 import Signup from "./components/Signup";
 import Store from "./components/Store";
-import Pages from "./components/Pages";
+import Homepage from "./pages/Homepage";
 
 
 import API from '../src/utils/API'
