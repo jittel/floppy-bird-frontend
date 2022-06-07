@@ -20,7 +20,17 @@ export default function HatStore() {
     setVisible(!visible);
   };
 
-  API.getAllHats();
+  const [hatResult, setHatResult] = React.useState({});
+  const getHats = async () => {
+    const response = await API.getAllHats();
+    setHatResult(response)
+  }
+  React.useEffect(()=>{
+    getHats({});
+  }, [hatResult]);
+  
+  
+  
 
   return (
     <List>
@@ -38,7 +48,7 @@ export default function HatStore() {
                 sx={{ width: 56, height: 56 }}
                 />
             </ListItemAvatar>
-            <ListItemText primary="Cap"/>
+            <ListItemText primary={[hatResult]} />
           </ListItemButton>
           <ListItemButton sx={{ pl:2 }}>
             <ListItemAvatar>
