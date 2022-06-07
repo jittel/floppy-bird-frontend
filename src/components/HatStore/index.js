@@ -10,6 +10,8 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
 import hats from "../assets/hats/index.js";
+import API from "../../utils/API";
+
 
 export default function HatStore() {
 
@@ -17,6 +19,8 @@ export default function HatStore() {
   const handleNestClick = () => {
     setVisible(!visible);
   };
+
+  API.getAllHats();
 
   return (
     <List>
