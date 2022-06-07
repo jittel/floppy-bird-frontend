@@ -34,5 +34,13 @@ module.exports = {
                 "Content-Type": "application/json"
             }
         }).then(res => res.json())
+    },
+    getAllHats: () => {
+        return fetch(`${BASE_URL}/api/categories/1`)
+        .then((res)=> {
+            return res.json();
+        }).then((hatData) => {
+            console.log(hatData)
+        })
     }
 }

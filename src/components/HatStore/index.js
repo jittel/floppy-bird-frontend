@@ -10,6 +10,8 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
 import hats from "../assets/hats/index.js";
+import API from "../../utils/API";
+
 
 export default function HatStore() {
 
@@ -17,6 +19,18 @@ export default function HatStore() {
   const handleNestClick = () => {
     setVisible(!visible);
   };
+
+  const [hatResult, setHatResult] = React.useState({});
+  const getHats = async () => {
+    const response = await API.getAllHats();
+    setHatResult(response)
+  }
+  React.useEffect(()=>{
+    getHats({});
+  }, [hatResult]);
+  
+  
+  
 
   return (
     <List>
@@ -34,7 +48,7 @@ export default function HatStore() {
                 sx={{ width: 56, height: 56 }}
                 />
             </ListItemAvatar>
-            <ListItemText primary="Cap"/>
+            <ListItemText primary={[hatResult]} />
           </ListItemButton>
           <ListItemButton sx={{ pl:2 }}>
             <ListItemAvatar>
