@@ -15,90 +15,112 @@ import API from "../../utils/API";
 
 export default function HatStore() {
 
+  // let hatArray = [];
+
   const [visible, setVisible] = React.useState(true);
+  // const [hatResult, setHatResult] = React.useState([]);
   const handleNestClick = () => {
+    API.getAllHats().then(data => {
+      // console.log("DATA", data.Accessories)
+      // setHatResult(data.Accessories)
+      // console.log(hatResult)
+      const hatData = data.Accessories;
+      // let hatArray = hatData.map((hat) => )
+      console.log(hatData[1])
+    })
     setVisible(!visible);
   };
 
-  const [hatResult, setHatResult] = React.useState({});
-  const getHats = async () => {
-    const response = await API.getAllHats();
-    setHatResult(response)
-  }
-  React.useEffect(()=>{
-    getHats({});
-  }, [hatResult]);
-  
-  
-  
+
+  // function getHats(hatData) {
+  // API.getAllHats().then(data=> {
+  //   if (data) {
+  //     setHatResult(data)
+  //     console.log(hatResult)
+  //   } else {
+  //     console.log("NOT WORKING")
+  //   }
+  // })
+  // }
+
+  // const getHats = async () => {
+  //   const response = await API.getAllHats();
+  //   setHatResult(response)
+  // }
+  // React.useEffect(()=>{
+  //   getHats({});
+  // }, [hatResult]);
+
+
+
 
   return (
     <List>
       <ListItemButton onClick={handleNestClick}>
         <ListItemText primary="Hats" />
-          {visible ? <ExpandMore /> : <ExpandLess />}
+        {visible ? <ExpandMore /> : <ExpandLess />}
       </ListItemButton>
       <Collapse in={!visible} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl:2 }}>
+          <ListItemButton sx={{ pl: 2 }}>
             <ListItemAvatar>
-              <Avatar 
-                alt="cap" 
-                src={hats.cap} 
+              <Avatar
+                alt="cap"
+                src={hats.cap}
                 sx={{ width: 56, height: 56 }}
-                />
+              />
             </ListItemAvatar>
-            <ListItemText primary={[hatResult]} />
+            <ListItemText primary={[]} />
           </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
+          <ListItemButton sx={{ pl: 2 }}>
             <ListItemAvatar>
-              <Avatar 
-                alt="cowboy hat" 
-                src={hats.cowboy} 
+              <Avatar
+                alt="cowboy hat"
+                src={hats.cowboy}
                 sx={{ width: 56, height: 56 }}
-                />
+              />
             </ListItemAvatar>
-            <ListItemText primary="Cowboy Hat"/>
+            <ListItemText primary="Cowboy Hat" />
           </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
+          <ListItemButton sx={{ pl: 2 }}>
             <ListItemAvatar>
-              <Avatar 
-                alt="crown" 
-                src={hats.crown} 
+              <Avatar
+                alt="crown"
+                src={hats.crown}
                 sx={{ width: 56, height: 56 }}
-                />
+              />
             </ListItemAvatar>
-            <ListItemText primary="Crown"/>
+            <ListItemText primary="Crown" />
           </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
+          <ListItemButton sx={{ pl: 2 }}>
             <ListItemAvatar>
-              <Avatar 
-                alt="flower crown" 
-                src={hats.flower} 
+              <Avatar
+                alt="flower crown"
+                src={hats.flower}
                 sx={{ width: 56, height: 56 }}
-                />
+              />
             </ListItemAvatar>
-            <ListItemText primary="Flower Crown"/>
+            <ListItemText primary="Flower Crown" />
           </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
+          <ListItemButton sx={{ pl: 2 }}>
             <ListItemAvatar>
-              <Avatar 
-                alt="hair" 
-                src={hats.hair} 
+              <Avatar
+                alt="hair"
+                src={hats.hair}
                 sx={{ width: 56, height: 56 }}
-                />
+              />
             </ListItemAvatar>
-            <ListItemText primary="Hair"/>
+            <ListItemText primary="Hair" />
           </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
+          <ListItemButton sx={{ pl: 2 }}>
             <ListItemAvatar>
-              <Avatar 
-                alt="spinny hat" 
-                src={hats.spinny} 
+              <Avatar
+                alt="spinny hat"
+                src={hats.spinny}
                 sx={{ width: 56, height: 56 }}
-                />
+              />
             </ListItemAvatar>
-            <ListItemText primary="Spinny Hat"/>
+            <ListItemText primary="Spinny Hat" />
           </ListItemButton>
         </List>
       </Collapse>
