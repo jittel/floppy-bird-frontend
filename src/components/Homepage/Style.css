@@ -7,13 +7,27 @@ body {
     background-color: rgb(107, 141, 56);
 }
 
-.borgor {
+.draggables {
     display: grid;
     flex-wrap: wrap;
     z-index:2;
 }
 
 #chickenCont {
+    display: grid;
+    justify-content: center;
+}
+
+.egg-counter {
+    font-family: sans-serif;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+.chick-name {
+    font-family: sans-serif;
+    font-weight: bold;
+    color: aliceblue;
     display: grid;
     justify-content: center;
 }

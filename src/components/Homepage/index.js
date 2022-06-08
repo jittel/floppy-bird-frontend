@@ -85,21 +85,25 @@ export default function Homepage(props) {
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
             <p className="egg-counter">Number of eggs: {eggCount}</p>
+            <h2 className="chick-name">Say hello to: "name here"</h2>
 
             {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
             <motion.div id="chickenCont">
                 <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
                 <motion.img drag
                     dragConstraints={windowdim}
-                    src={userHat} className="borgor" id="hat">
+                    initial={{ y: -500 }}
+                    src={userHat} className="draggables" id="hat">
                 </motion.img>
                 <motion.img drag
                     dragConstraints={windowdim}
-                    src={userShoes} className="borgor" id="shoe">
+                    initial={{ y: -285 }}
+                    src={userShoes} className="draggables" id="shoe">
                 </motion.img>
                 <motion.img drag
                     dragConstraints={windowdim}
-                    src={userArms} className="borgor" id="arm">
+                    initial={{ y: -600 }}
+                    src={userArms} className="draggables" id="arm">
                 </motion.img>
             </motion.div>
 
