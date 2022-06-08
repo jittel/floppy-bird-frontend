@@ -19,9 +19,6 @@ export default function Homepage(props) {
         navigate('/login', {replace:true})
     }
 
-    // const userData = localStorage.getItem("user data");
-    // let userObj = JSON.parse(userData);
-
     const windowdim = useRef(null);
 
     const userSelectedArms = arms.beer
@@ -31,12 +28,6 @@ export default function Homepage(props) {
     const userHat = userSelectedHat
     const userArms = userSelectedArms
     const userShoes = userSelectedShoes
-
-    // let [loggedInData, setLoggedInData] = useState();
-    // useEffect(()=> {
-    //     setLoggedInData(userObj)
-    //     console.log("LOGGED IN DATA", loggedInData)
-    // }, [])
 
     let [userData, setUserData] = useState({
         username: '',
@@ -85,7 +76,7 @@ export default function Homepage(props) {
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
             <p className="egg-counter">Number of eggs: {eggCount}</p>
-            <h2 className="chick-name">Say hello to: "name here"</h2>
+            <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
 
             {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
             <motion.div id="chickenCont">
