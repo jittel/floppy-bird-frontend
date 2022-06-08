@@ -9,94 +9,67 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
-import hats from "../assets/hats/index.js";
 import API from "../../utils/API";
-
+import { Typography } from '@mui/material';
 
 export default function HatStore() {
 
-  // let hatArray = [];
+    const [hatInfo, setHatInfo] = React.useState();
+    const [visible, setVisible] = React.useState(true);
+    const [isLoading, setLoading] = React.useState(true);
 
-  const [visible, setVisible] = React.useState(true);
-  const handleNestClick = () => {
-    API.getAllHats().then(data => {
-      const hatData = data.Accessories;
-      // let hatArray = hatData.map((hat) => )
-      console.log(hatData[1])
-    })
-    setVisible(!visible);
-  };
+    React.useEffect(()=> {
+        API.getAllHats().then(data => {
+            setHatInfo(data.Accessories);
+            setLoading(false);
+          })
+    }, []);
 
-  return (
-    <List>
-      <ListItemButton onClick={handleNestClick}>
-        <ListItemText primary="Hats" />
-        {visible ? <ExpandMore /> : <ExpandLess />}
-      </ListItemButton>
-      <Collapse in={!visible} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="cap"
-                src={hats.cap}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary={[]} />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="cowboy hat"
-                src={hats.cowboy}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Cowboy Hat" />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="crown"
-                src={hats.crown}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Crown" />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="flower crown"
-                src={hats.flower}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Flower Crown" />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="hair"
-                src={hats.hair}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Hair" />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="spinny hat"
-                src={hats.spinny}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Spinny Hat" />
-          </ListItemButton>
-        </List>
-      </Collapse>
-    </List>
-  );
-}
+    const handleNestClick = () => {
+        setVisible(!visible);
+    };
+
+    if (isLoading) {
+        return <div>Loading</div>
+    }
+  
+    return (
+      <List>
+        <ListItemButton onClick={handleNestClick}>
+          <ListItemText primary="Hats" />
+          {visible ? <ExpandMore /> : <ExpandLess />}
+        </ListItemButton>
+        { !visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {hatInfo.map((hat) => (
+                <ListItemButton sx={{ pl: 2 }} key={hat.id}>
+                    <ListItemAvatar>
+                        <Avatar
+                            alt={hat.accessory_name}
+                            src={hat.accessory_img}
+                            sx={{ width: 56, height: 56 }}
+                            />
+                        </ListItemAvatar>
+                    <ListItemText 
+                        primary={hat.accessory_name}
+                        secondary={
+                            <React.Fragment>
+                                <Typography
+                                  sx={{ display: 'inline' }}
+                                  component="span"
+                                  variant="caption"
+                                  color="text.primary"
+                                >
+                                Price:
+                                </Typography>
+                                {hat.accessory_price}
+                            </React.Fragment>
+                        }
+                        />
+                </ListItemButton>
+            ))}
+          </List>
+        </Collapse>}
+      </List>
+    );
+  }
