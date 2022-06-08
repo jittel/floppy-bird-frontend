@@ -40,8 +40,18 @@ module.exports = {
             .then((res) => {
                 return res.json();
             })
-    }
-    // getAllHats: () => {
-    //     return fetch(`${BASE_URL}/api/categories/1`).then(res => res.json())
-    // }
+    },
+    getAllItems: () => {
+        return fetch(`${BASE_URL}/api/categories/2`)
+            .then((res) => {
+                return res.json();
+            })
+    },
+    getAllShoes: () => {
+        return fetch(`${BASE_URL}/api/categories/3`)
+            .then((res) => {
+                return res.json();
+            })
+    },
+
 }

@@ -9,85 +9,67 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
-import arms from "../assets/arms/index.js";
+import API from "../../utils/API";
+import { Typography } from '@mui/material';
 
 export default function ItemStore() {
 
-  const [visible, setVisible] = React.useState(true);
-  const handleNestClick = () => {
-    setVisible(!visible);
-  };
+    const [itemInfo, setItemInfo] = React.useState();
+    const [visible, setVisible] = React.useState(true);
+    const [isLoading, setLoading] = React.useState(true);
 
-  return (
-    <List>
-      <ListItemButton onClick={handleNestClick}>
-        <ListItemText primary="Items" />
+    React.useEffect(()=> {
+        API.getAllItems().then(data => {
+            setItemInfo(data.Accessories);
+            setLoading(false);
+          })
+    }, []);
+
+    const handleNestClick = () => {
+        setVisible(!visible);
+    };
+
+    if (isLoading) {
+        return <div>Loading</div>
+    }
+  
+    return (
+      <List>
+        <ListItemButton onClick={handleNestClick}>
+          <ListItemText primary="Items" />
           {visible ? <ExpandMore /> : <ExpandLess />}
-      </ListItemButton>
-      <Collapse in={!visible} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl:2 }}>
-            <ListItemAvatar>
-              <Avatar 
-                alt="basketball" 
-                src={arms.basketball} 
-                sx={{ width: 56, height: 56 }}
-                />
-            </ListItemAvatar>
-            <ListItemText primary="Basketball"/>
-          </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
-            <ListItemAvatar>
-              <Avatar 
-                alt="beer" 
-                src={arms.beer} 
-                sx={{ width: 56, height: 56 }}
-                />
-            </ListItemAvatar>
-            <ListItemText primary="Beer"/>
-          </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
-            <ListItemAvatar>
-              <Avatar 
-                alt="knives" 
-                src={arms.knives} 
-                sx={{ width: 56, height: 56 }}
-                />
-            </ListItemAvatar>
-            <ListItemText primary="Knives"/>
-          </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
-            <ListItemAvatar>
-              <Avatar 
-                alt="money" 
-                src={arms.money} 
-                sx={{ width: 56, height: 56 }}
-                />
-            </ListItemAvatar>
-            <ListItemText primary="Money"/>
-          </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
-            <ListItemAvatar>
-              <Avatar 
-                alt="scepter" 
-                src={arms.scepter} 
-                sx={{ width: 56, height: 56 }}
-                />
-            </ListItemAvatar>
-            <ListItemText primary="Scepter"/>
-          </ListItemButton>
-          <ListItemButton sx={{ pl:2 }}>
-            <ListItemAvatar>
-              <Avatar 
-                alt="yass nails" 
-                src={arms.yas} 
-                sx={{ width: 56, height: 56 }}
-                />
-            </ListItemAvatar>
-            <ListItemText primary="Yass Nails"/>
-          </ListItemButton>
-        </List>
-      </Collapse>
-    </List>
-  );
-}
+        </ListItemButton>
+        { !visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {itemInfo.map((item) => (
+                <ListItemButton sx={{ pl: 2 }} key={item.id}>
+                    <ListItemAvatar>
+                        <Avatar
+                            alt={item.accessory_name}
+                            src={item.accessory_img}
+                            sx={{ width: 56, height: 56 }}
+                            />
+                        </ListItemAvatar>
+                    <ListItemText 
+                        primary={item.accessory_name}
+                        secondary={
+                            <React.Fragment>
+                                <Typography
+                                  sx={{ display: 'inline' }}
+                                  component="span"
+                                  variant="caption"
+                                  color="text.primary"
+                                >
+                                Price:
+                                </Typography>
+                                {item.accessory_price}
+                            </React.Fragment>
+                        }
+                        />
+                </ListItemButton>
+            ))}
+          </List>
+        </Collapse>}
+      </List>
+    );
+  }
