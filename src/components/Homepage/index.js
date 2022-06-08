@@ -47,9 +47,8 @@ export default function Homepage(props) {
     });
     useEffect(() => {
         console.log(props.loggedInData)
-        API.getOneUser(props.userId).then((data) => {
+        API.getOneUser(props.loggedInData.id).then((data) => {
             if (data.username) {
-                console.log(data)
                 setUserData({
                     username: data.username,
                     eggs: data.eggs,
@@ -57,6 +56,7 @@ export default function Homepage(props) {
                         name: data.Chicken.chicken_name
                     }
                 })
+                console.log(data)
             }
         })
     }, [])
