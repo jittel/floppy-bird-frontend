@@ -1,8 +1,14 @@
-import React, {useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Style.css'
+import {
+    useNavigate
+  } from "react-router-dom";
 
 export default function Login(props) {
+    let navigate = useNavigate();
 
+
+    const [loggedIn, setLoggedIn] = useState(false)
     const [loginData, setLoginData] = useState({
         username: "",
         password: ""
@@ -11,10 +17,15 @@ export default function Login(props) {
     const loginSubmit = e => {
         e.preventDefault();
         props.login(loginData);
+        if (loginData) {
+            setLoggedIn(true)
+        }
         setLoginData({
             username: "",
             password: ""
         })
+        // window.location.replace('/homepage')
+        navigate('/homepage', {replace:true})
     }
 
     return (
