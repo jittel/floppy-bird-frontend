@@ -18,41 +18,14 @@ export default function HatStore() {
   // let hatArray = [];
 
   const [visible, setVisible] = React.useState(true);
-  // const [hatResult, setHatResult] = React.useState([]);
   const handleNestClick = () => {
     API.getAllHats().then(data => {
-      // console.log("DATA", data.Accessories)
-      // setHatResult(data.Accessories)
-      // console.log(hatResult)
       const hatData = data.Accessories;
       // let hatArray = hatData.map((hat) => )
       console.log(hatData[1])
     })
     setVisible(!visible);
   };
-
-
-  // function getHats(hatData) {
-  // API.getAllHats().then(data=> {
-  //   if (data) {
-  //     setHatResult(data)
-  //     console.log(hatResult)
-  //   } else {
-  //     console.log("NOT WORKING")
-  //   }
-  // })
-  // }
-
-  // const getHats = async () => {
-  //   const response = await API.getAllHats();
-  //   setHatResult(response)
-  // }
-  // React.useEffect(()=>{
-  //   getHats({});
-  // }, [hatResult]);
-
-
-
 
   return (
     <List>
