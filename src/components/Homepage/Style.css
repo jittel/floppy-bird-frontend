@@ -7,7 +7,7 @@ body {
     background-color: rgb(107, 141, 56);
 }
 
-.borgor {
+.draggable {
     display: grid;
     flex-wrap: wrap;
     z-index:2;
@@ -16,4 +16,18 @@ body {
 #chickenCont {
     display: grid;
     justify-content: center;
+}
+
+.chickName {
+    display: grid;
+    justify-content: center;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: aliceblue;
+}
+
+.egg-counter {
+    font-weight: bold;
+    font-family: sans-serif;
+    color: aliceblue;
 }
