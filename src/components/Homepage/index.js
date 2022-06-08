@@ -8,6 +8,12 @@ import Accessories from "../Accessories/index.js"
 
 
 export default function Homepage() {
+
+    const savedToken = localStorage.getItem("token");
+    if (!savedToken) {
+        window.location.replace('/login')
+    }
+
     const windowdim = useRef(null);
 
     const userSelectedArms = arms.beer
