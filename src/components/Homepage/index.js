@@ -6,18 +6,18 @@ import shoes from "../assets/shoes/index.js";
 import './Style.css'
 import Accessories from "../Accessories/index.js"
 import API from '../../utils/API';
-// import {
-//     useNavigate
-//   } from "react-router-dom";
+import {
+    useNavigate
+  } from "react-router-dom";
 
 
 export default function Homepage(props) {
-    // let navigate = useNavigate();
+    let navigate = useNavigate();
 
-    // const savedToken = localStorage.getItem("token");
-    // if (!savedToken) {
-    //     navigate('/homepage', {replace:true})
-    // }
+    const savedToken = localStorage.getItem("token");
+    if (!savedToken) {
+        navigate('/login', {replace:true})
+    }
 
     // const userData = localStorage.getItem("user data");
     // let userObj = JSON.parse(userData);
