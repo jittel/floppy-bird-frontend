@@ -37,10 +37,11 @@ module.exports = {
     },
     getAllHats: () => {
         return fetch(`${BASE_URL}/api/categories/1`)
-        .then((res)=> {
-            return res.json();
-        }).then((hatData) => {
-            console.log(hatData)
-        })
+            .then((res) => {
+                return res.json();
+            })
     }
+    // getAllHats: () => {
+    //     return fetch(`${BASE_URL}/api/categories/1`).then(res => res.json())
+    // }
 }
