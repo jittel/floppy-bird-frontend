@@ -1,7 +1,9 @@
 import React from 'react';
-import Store from '../components/Store';
+
 import Homepage from '../components/Homepage';
 import Logout from '../components/Logout';
+
+import Header from '../components/Header';
 
 export default function Home(props) {
     // const userData = localStorage.getItem("user data")
@@ -9,7 +11,7 @@ export default function Home(props) {
     // console.log("----->", userObj.eggs)
     return (
         <div>
-            <Store />
+            <Header />
             <Logout logout={props.logout} />
             <Homepage loggedInData={props.loggedInData} userId={props.userId}/>
         </div>
