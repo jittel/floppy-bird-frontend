@@ -36,12 +36,13 @@ export default function HatStore() {
   const purchaseHat = (event) => {
     const hatName=event.target.id
     console.log(hatName)
+    if (event.target.id) {
     if (window.confirm(`Are you sure you wish to purchase ${hatName} for 1 Egg?`)) {
      console.log('purchase function')
      //Async await the users egg data and inventory data. 
      //Subtract 1 Egg from user data and put hatName into accessory data
   }
-  };
+  }};
 
   if (isLoading) {
     return <div>Loading</div>
