@@ -8,7 +8,7 @@ import Accessories from "../Accessories/index.js"
 import API from '../../utils/API';
 import {
     useNavigate
-  } from "react-router-dom";
+} from "react-router-dom";
 
 
 export default function Homepage(props) {
@@ -16,7 +16,7 @@ export default function Homepage(props) {
 
     const savedToken = localStorage.getItem("token");
     if (!savedToken) {
-        navigate('/login', {replace:true})
+        navigate('/login', { replace: true })
     }
 
     const windowdim = useRef(null);
@@ -30,52 +30,46 @@ export default function Homepage(props) {
     const userShoes = userSelectedShoes
 
     let [userData, setUserData] = useState({
+        id: '',
         username: '',
-        eggs: 0,
+        eggs: props.loggedInData.eggs,
         chicken: {
             name: ''
         }
     });
     useEffect(() => {
-        console.log(props.loggedInData)
+        // console.log("data data", props.loggedInData)
         API.getOneUser(props.loggedInData.id).then((data) => {
+            // console.log("data data", data)
             if (data.username) {
                 setUserData({
+                    id: data.id,
                     username: data.username,
                     eggs: data.eggs,
                     chicken: {
                         name: data.Chicken.chicken_name
                     }
                 })
-                // console.log(data)
             }
         })
     }, [])
-    console.log("USER DATA", userData)
 
-    // let isFed = false;
-    let [eggCount, setCount] = useState(0);
-    // if(isFed === false){
+    let [eggCount, setCount] = useState(props.loggedInData.eggs);
     useEffect(() => {
         setTimeout(() => {
             console.log('time')
             setCount(eggCount + 1);
-            setUserData(prevState=>({
+            setUserData(prevState => ({
                 ...prevState,
-                eggs:userData.eggs+1
+                eggs: userData.eggs + 1
             }))
-            // console.log(userObj.eggs)
         }, 5000)
-        API.updateEggs(props.loggedInData.id, eggCount).then(()=>{
+        API.updateEggs(userData.id, userData.eggs).then(() => {
             console.log("data updated")
         })
     }, [eggCount])
-    // } else {
-    //     setTimeout(() =>{
-    //         setCount(eggCount++);
-    //     }, 7000)
-    // }
 
+    console.log("USER DATA", userData)
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
             <p className="egg-counter">Number of eggs: {eggCount}</p>
