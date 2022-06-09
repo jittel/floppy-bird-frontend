@@ -4,7 +4,8 @@
 }
 
 body {
-    background-color: rgb(107, 141, 56);
+    /* background-color: rgb(107, 141, 56); */
+    background-color: #fce4ec;
 }
 
 .draggables {
@@ -21,13 +22,15 @@ body {
 .egg-counter {
     font-family: sans-serif;
     font-weight: bold;
-    color: aliceblue;
+    /* color: aliceblue; */
+    color: #d500f9;
 }
 
 .chick-name {
     font-family: sans-serif;
     font-weight: bold;
-    color: aliceblue;
+    /* color: aliceblue; */
+    color: #d500f9;
     display: grid;
     justify-content: center;
 }
