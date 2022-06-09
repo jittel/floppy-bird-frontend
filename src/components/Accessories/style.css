@@ -1,4 +1,12 @@
-.custom-tool {
-    display: flex;
-    justify-content: end;
+.custom-menuIcon:hover {
+    color: #8e24aa;
+}
+
+.dresser-title {
+    color: #8e24aa;
+    text-align: center;
+}
+
+.custom-arrow {
+    color: #8e24aa;
 }
