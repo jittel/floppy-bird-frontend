@@ -40,8 +40,13 @@ module.exports = {
             .then((res) => {
                 return res.json();
             })
+    },
+    updateEggs: (userId, eggs) => {
+        return fetch(`${BASE_URL}/api/users/${userId}`, {
+            method:"PUT",
+            body: eggs
+        }).then(()=>{
+            console.log("data updated in api")
+        })
     }
-    // getAllHats: () => {
-    //     return fetch(`${BASE_URL}/api/categories/1`).then(res => res.json())
-    // }
 }

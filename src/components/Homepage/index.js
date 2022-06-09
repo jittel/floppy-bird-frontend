@@ -47,11 +47,11 @@ export default function Homepage(props) {
                         name: data.Chicken.chicken_name
                     }
                 })
-                console.log(data)
+                // console.log(data)
             }
         })
     }, [])
-    console.log(userData)
+    console.log("USER DATA", userData)
 
     // let isFed = false;
     let [eggCount, setCount] = useState(0);
@@ -66,6 +66,9 @@ export default function Homepage(props) {
             }))
             // console.log(userObj.eggs)
         }, 5000)
+        API.updateEggs(props.loggedInData.id, eggCount).then(()=>{
+            console.log("data updated")
+        })
     }, [eggCount])
     // } else {
     //     setTimeout(() =>{
