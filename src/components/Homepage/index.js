@@ -31,12 +31,6 @@ export default function Homepage(props) {
     const userArms = userSelectedArms
     const userShoes = userSelectedShoes
 
-    // let [loggedInData, setLoggedInData] = useState();
-    // useEffect(()=> {
-    //     setLoggedInData(userObj)
-    //     console.log("LOGGED IN DATA", loggedInData)
-    // }, [])
-
     let [userData, setUserData] = useState({
         id: '',
         username: '',
@@ -47,9 +41,13 @@ export default function Homepage(props) {
     });
     useEffect(() => {
         // console.log("data data", props.loggedInData)
+        const lsData = window.localStorage.getItem("user data");
         API.getOneUser(props.loggedInData.id).then((data) => {
             console.log("data data", data)
-            if (data.username) {
+            if (lsData) {
+                // console.log("LOCAL STORAGE DATA", JSON.parse(lsData))
+                setUserData(JSON.parse(lsData))
+            } else {
                 setUserData({
                     id: data.id,
                     username: data.username,
@@ -63,6 +61,11 @@ export default function Homepage(props) {
 
     }, [])
 
+    useEffect(() => {
+        if (userData) {
+            window.localStorage.setItem("user data", JSON.stringify(userData))
+        }
+    }, [userData])
 
     // const egg var with src
     // create a state variable that holds your array of eggs currently on the page
@@ -77,7 +80,7 @@ export default function Homepage(props) {
 
     // const [eggArr, setEggs] = useState([]);
     const spawnEgg = (event) => {
-        event.target.src="";
+        event.target.src = "";
     }
 
     // const spawnFood = (event) => {
@@ -111,7 +114,7 @@ export default function Homepage(props) {
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
             <p className="egg-counter">Number of eggs: {userData.eggs}</p>
-            
+
             <img id="egggg" src="" onClick={spawnEgg}></img>
 
             <button onClick={spawnFood}>Feed!</button>
@@ -122,19 +125,19 @@ export default function Homepage(props) {
             {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
             <motion.div animate={{ rotate: [-90, 0, -90, 0] }} transistion={{ type: 'spring', bounce: 2, }} id="chickenCont">
                 <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
-                <motion.img 
+                <motion.img
                     // drag
                     // dragConstraints={windowdim}
                     initial={{ y: -500 }}
                     src={userHat} className="draggables" id="hat">
                 </motion.img>
-                <motion.img 
+                <motion.img
                     // drag
                     // dragConstraints={windowdim}
                     initial={{ y: -285 }}
                     src={userShoes} className="draggables" id="shoe">
                 </motion.img>
-                <motion.img 
+                <motion.img
                     // drag
                     // dragConstraints={windowdim}
                     initial={{ y: -600 }}
@@ -146,5 +149,5 @@ export default function Homepage(props) {
         </div>
 
     )
-    
+
 }

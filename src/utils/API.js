@@ -47,7 +47,7 @@ module.exports = {
         console.log("eggs", eggs);
         return axios.put(`${BASE_URL}/api/users/${userId}`, {
             "eggs": eggs,
-        }).then(data => console.log(data))
+        }).then(data => console.log("this the request data", data))
     },
     getAllItems: () => {
         return fetch(`${BASE_URL}/api/categories/2`)
