@@ -89,12 +89,12 @@ export default function Homepage(props) {
     }
 
     // let isFed = false;
-    let [eggCount, setCount] = useState(0);
+    // let [eggCount, setCount] = useState(0);
     // if(isFed === false){
     useEffect(() => {
         setTimeout(() => {
             console.log('time')
-            setCount(eggCount + 1);
+            // setCount(eggCount + 1);
             setUserData(prevState => ({
                 ...prevState,
                 eggs: userData.eggs + 1
@@ -105,12 +105,12 @@ export default function Homepage(props) {
         API.updateEggs(userData.id, userData.eggs).then(() => {
             console.log("data updated")
         })
-    }, [eggCount])
+    }, [userData.eggs])
 
     console.log("USER DATA", userData)
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
-            <p className="egg-counter">Number of eggs: {eggCount}</p>
+            <p className="egg-counter">Number of eggs: {userData.eggs}</p>
             
             <img id="egggg" src="" onClick={spawnEgg}></img>
 
