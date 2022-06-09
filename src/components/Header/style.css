@@ -1,4 +1,6 @@
 .custom-nav {
     display: flex;
     justify-content: space-between;
+    background-color: #8e24aa;
+    color: white;
 }

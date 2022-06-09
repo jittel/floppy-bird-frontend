@@ -2,3 +2,6 @@
     display: flex;
     justify-content: end;
 }
+.custom-menuIcon:hover {
+    color: #8e24aa;
+}
