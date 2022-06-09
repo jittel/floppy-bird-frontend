@@ -20,9 +20,6 @@ export default function Homepage(props) {
         navigate('/login', {replace:true})
     }
 
-    // const userData = localStorage.getItem("user data");
-    // let userObj = JSON.parse(userData);
-
     const windowdim = useRef(null);
 
     const userSelectedArms = arms.beer
@@ -38,8 +35,6 @@ export default function Homepage(props) {
     //     setLoggedInData(userObj)
     //     console.log("LOGGED IN DATA", loggedInData)
     // }, [])
-
-    
 
     let [userData, setUserData] = useState({
         username: '',
@@ -59,11 +54,13 @@ export default function Homepage(props) {
                         name: data.Chicken.chicken_name
                     }
                 })
-                console.log(data)
+                // console.log(data)
             }
         })
-    }, []);
-    console.log(userData)
+
+    }, [])
+    console.log("USER DATA", userData)
+
 
     // const egg var with src
     // create a state variable that holds your array of eggs currently on the page
@@ -95,6 +92,9 @@ export default function Homepage(props) {
             document.getElementById("egggg").setAttribute("src", egg)
             // eggArr.push({image: egg, xpos: 100, ypos: 100, width: 100, height: 100})
         }, 5000)
+        API.updateEggs(props.loggedInData.id, eggCount).then(()=>{
+            console.log("data updated")
+        })
     }, [eggCount])
     // } else {
     //     setTimeout(() =>{
@@ -108,11 +108,10 @@ export default function Homepage(props) {
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
             <p className="egg-counter">Number of eggs: {eggCount}</p>
+            
+            <img id="egggg" src="" onClick={spawnEgg}></img>    
+            <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
 
-            
-            <img id="egggg" src="" onClick={spawnEgg}></img>
-            
-            <h2 className="chick-name">Say hello to: "name here"</h2>
 
             {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
             <motion.div animate={{ rotate: [-90, 0, -90, 0] }} transistion={{ type: 'spring', bounce: 2, }} id="chickenCont">

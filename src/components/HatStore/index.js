@@ -8,24 +8,44 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
-import hats from "../assets/hats/index.js";
 import API from "../../utils/API";
-
+import { Typography } from '@mui/material';
 
 export default function HatStore() {
 
-  // let hatArray = [];
-
+  const [hatInfo, setHatInfo] = React.useState();
   const [visible, setVisible] = React.useState(true);
-  const handleNestClick = () => {
+  const [isLoading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
     API.getAllHats().then(data => {
-      const hatData = data.Accessories;
-      // let hatArray = hatData.map((hat) => )
-      console.log(hatData[1])
+      setHatInfo(data.Accessories);
+      setLoading(false);
     })
+  }, []);
+
+  const handleNestClick = () => {
     setVisible(!visible);
   };
+
+  const purchaseHat = (event) => {
+    const hatName=event.target.id
+    console.log(hatName)
+    if (window.confirm(`Are you sure you wish to purchase ${hatName} for 1 Egg?`)) {
+     console.log('purchase function')
+     //Async await the users egg data and inventory data. 
+     //Subtract 1 Egg from user data and put hatName into accessory data
+  }
+  };
+
+  if (isLoading) {
+    return <div>Loading</div>
+  }
 
   return (
     <List>
@@ -33,70 +53,44 @@ export default function HatStore() {
         <ListItemText primary="Hats" />
         {visible ? <ExpandMore /> : <ExpandLess />}
       </ListItemButton>
-      <Collapse in={!visible} timeout="auto" unmountOnExit>
+      {!visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="cap"
-                src={hats.cap}
-                sx={{ width: 56, height: 56 }}
+          {hatInfo.map((hat) => (
+            <ListItemButton sx={{ pl: 2 }} key={hat.id} >
+              <ListItemAvatar >
+                <Avatar
+                  alt={hat.accessory_name}
+                  src={hat.accessory_img}
+                  sx={{ width: 56, height: 56 }}
+                />
+              </ListItemAvatar>
+              <ListItemText
+                primary={hat.accessory_name}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      sx={{ display: 'inline' }}
+                      component="span"
+                      variant="caption"
+                      color="text.primary"
+                    >
+                      Price:
+                    </Typography>
+                    {hat.accessory_price}
+                  </React.Fragment>
+                }
               />
-            </ListItemAvatar>
-            <ListItemText primary={[]} />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="cowboy hat"
-                src={hats.cowboy}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Cowboy Hat" />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="crown"
-                src={hats.crown}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Crown" />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="flower crown"
-                src={hats.flower}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Flower Crown" />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="hair"
-                src={hats.hair}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Hair" />
-          </ListItemButton>
-          <ListItemButton sx={{ pl: 2 }}>
-            <ListItemAvatar>
-              <Avatar
-                alt="spinny hat"
-                src={hats.spinny}
-                sx={{ width: 56, height: 56 }}
-              />
-            </ListItemAvatar>
-            <ListItemText primary="Spinny Hat" />
-          </ListItemButton>
+               <ListItem onClick={purchaseHat} id={hat.accessory_name}
+                  secondaryAction={
+                    <IconButton id={hat.accessory_name} edge="end" aria-label="delete" >
+                      <AttachMoneyIcon id={hat.accessory_name}/>
+                    </IconButton>
+                  }
+                ></ListItem>
+            </ListItemButton>
+          ))}
         </List>
-      </Collapse>
+      </Collapse>}
     </List>
   );
 }

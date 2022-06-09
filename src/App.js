@@ -65,16 +65,16 @@ function App() {
         console.log("is this firing", data.user)
         localStorage.setItem("token", data.token)
         localStorage.setItem("user data", JSON.stringify(data.user))
-        setToken(data.token)
         setLoggedInData({
           id: data.user.id,
           username: data.user.username,
           eggs: data.user.eggs,
           chicken: {
-            name: data.user.Chicken.chicken_name
+            name: data.user.Chicken?.chicken_name
           }
         })
-        console.log("----->", token)
+        setToken(data.token)
+        // console.log("----->", loggedInData)
         // window.location.replace('/homepage')
       }
     })
