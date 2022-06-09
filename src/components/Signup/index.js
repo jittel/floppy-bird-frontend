@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Style.css'
+import './style.css'
 import API from "../../utils/API"
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
