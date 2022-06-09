@@ -48,7 +48,7 @@ export default function Homepage(props) {
     useEffect(() => {
         // console.log("data data", props.loggedInData)
         API.getOneUser(props.loggedInData.id).then((data) => {
-            // console.log("data data", data)
+            console.log("data data", data)
             if (data.username) {
                 setUserData({
                     id: data.id,
