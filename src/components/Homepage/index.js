@@ -3,7 +3,8 @@ import { motion, useSpring } from "framer-motion";
 import arms from "../assets/arms/index.js";
 import hats from "../assets/hats/index.js";
 import shoes from "../assets/shoes/index.js";
-import egg from "../assets/egg.jpg"
+import egg from "../assets/egg.jpg";
+import wheat from "../assets/wheat.jpg";
 import './Style.css'
 import Accessories from "../Accessories/index.js"
 import API from '../../utils/API';
@@ -78,6 +79,14 @@ export default function Homepage(props) {
         event.target.src="";
     }
 
+    // const spawnFood = (event) => {
+    //     event.target.src={wheat};
+    // }
+
+    function spawnFood() {
+        document.getElementById("wheaties").setAttribute("src", wheat)
+    }
+
     // let isFed = false;
     let [eggCount, setCount] = useState(0);
     // if(isFed === false){
@@ -109,7 +118,10 @@ export default function Homepage(props) {
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
             <p className="egg-counter">Number of eggs: {eggCount}</p>
             
-            <img id="egggg" src="" onClick={spawnEgg}></img>    
+            <img id="egggg" src="" onClick={spawnEgg}></img>
+
+            <button onClick={spawnFood}>Feed!</button>
+
             <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
 
 
@@ -135,10 +147,7 @@ export default function Homepage(props) {
                     src={userArms} className="draggables" id="arm">
                 </motion.img>
             </motion.div>
-            {/* <motion.img 
-                drag
-                dragConstraints={windowdim}
-                src={require("../assets/wheat.jpg")}></motion.img> */}
+            <motion.img id="wheaties" src="" initial={{ x: 350, y: -1000 }} animate={{ x: 350, y: -500 }} transition={{ duration: 0.75, type: 'spring', bounce: 0.25 }}></motion.img>
 
         </div>
 
