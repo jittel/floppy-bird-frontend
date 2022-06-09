@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import './style.css'
 
 import HatStore from '../HatStore';
 import ShoeStore from '../ShoeStore';
@@ -76,7 +77,7 @@ export default function Store() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar position="fixed" open={open} >
+      <AppBar position="fixed" open={open} className='customAppBar'>
         <Toolbar>
           <IconButton
             color="inherit"
