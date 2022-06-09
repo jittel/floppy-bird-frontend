@@ -11,9 +11,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import './style.css'
 
-import HatStore from '../HatStore';
-import ShoeStore from '../ShoeStore';
-import ItemStore from '../ItemStore';
+import HatsOwned from '../HatsOwned';
+import ItemsOwned from '../ItemsOwned';
+import ShoesOwned from '../ShoesOwned';
 
 
 const drawerWidth = 280;
@@ -66,9 +66,9 @@ export default function Store() {
           </Typography>
         </DrawerHeader>
         <Divider />
-        <HatStore />
-        <ShoeStore />
-        <ItemStore />
+        <HatsOwned />
+        <ShoesOwned />
+        <ItemsOwned />
       </Drawer>
 
       <Toolbar className='custom-tool'>
