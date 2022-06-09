@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useSpring } from "framer-motion";
 import arms from "../assets/arms/index.js";
 import hats from "../assets/hats/index.js";
 import shoes from "../assets/shoes/index.js";
@@ -82,7 +82,7 @@ export default function Homepage(props) {
             <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
 
             {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
-            <motion.div id="chickenCont">
+            <motion.div animate={{ rotate: [-90, 0, -90, 0] }} transistion={{ type: 'spring', bounce: 2, }} id="chickenCont">
                 <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
                 <motion.img drag
                     dragConstraints={windowdim}

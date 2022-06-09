@@ -48,5 +48,18 @@ module.exports = {
         }).then(()=>{
             console.log("data updated in api")
         })
-    }
+    },
+    getAllItems: () => {
+        return fetch(`${BASE_URL}/api/categories/2`)
+            .then((res) => {
+                return res.json();
+            })
+    },
+    getAllShoes: () => {
+        return fetch(`${BASE_URL}/api/categories/3`)
+            .then((res) => {
+                return res.json();
+            })
+    },
+
 }
