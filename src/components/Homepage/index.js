@@ -3,13 +3,14 @@ import { motion, useSpring } from "framer-motion";
 import arms from "../assets/arms/index.js";
 import hats from "../assets/hats/index.js";
 import shoes from "../assets/shoes/index.js";
-import egg from "../assets/egg.jpg"
+import egg from "../assets/egg.jpg";
+import wheat from "../assets/wheat.jpg";
 import './Style.css'
 import Accessories from "../Accessories/index.js"
 import API from '../../utils/API';
 import {
     useNavigate
-  } from "react-router-dom";
+} from "react-router-dom";
 
 
 export default function Homepage(props) {
@@ -17,7 +18,7 @@ export default function Homepage(props) {
 
     const savedToken = localStorage.getItem("token");
     if (!savedToken) {
-        navigate('/login', {replace:true})
+        navigate('/login', { replace: true })
     }
 
     const windowdim = useRef(null);
@@ -37,29 +38,30 @@ export default function Homepage(props) {
     // }, [])
 
     let [userData, setUserData] = useState({
+        id: '',
         username: '',
-        eggs: 0,
+        eggs: props.loggedInData.eggs,
         chicken: {
             name: ''
         }
     });
     useEffect(() => {
-        console.log(props.loggedInData)
+        // console.log("data data", props.loggedInData)
         API.getOneUser(props.loggedInData.id).then((data) => {
+            // console.log("data data", data)
             if (data.username) {
                 setUserData({
+                    id: data.id,
                     username: data.username,
                     eggs: data.eggs,
                     chicken: {
                         name: data.Chicken.chicken_name
                     }
                 })
-                // console.log(data)
             }
         })
 
     }, [])
-    console.log("USER DATA", userData)
 
 
     // const egg var with src
@@ -78,38 +80,42 @@ export default function Homepage(props) {
         event.target.src="";
     }
 
+    // const spawnFood = (event) => {
+    //     event.target.src={wheat};
+    // }
+
+    function spawnFood() {
+        document.getElementById("wheaties").setAttribute("src", wheat)
+    }
+
     // let isFed = false;
-    let [eggCount, setCount] = useState(0);
+    // let [eggCount, setCount] = useState(0);
     // if(isFed === false){
     useEffect(() => {
         setTimeout(() => {
             console.log('time')
-            setCount(eggCount + 1);
-            setUserData(prevState=>({
+            // setCount(eggCount + 1);
+            setUserData(prevState => ({
                 ...prevState,
-                eggs:userData.eggs+1
+                eggs: userData.eggs + 1
             }))
             document.getElementById("egggg").setAttribute("src", egg)
             // eggArr.push({image: egg, xpos: 100, ypos: 100, width: 100, height: 100})
         }, 5000)
-        API.updateEggs(props.loggedInData.id, eggCount).then(()=>{
+        API.updateEggs(userData.id, userData.eggs).then(() => {
             console.log("data updated")
         })
-    }, [eggCount])
-    // } else {
-    //     setTimeout(() =>{
-    //         setCount(eggCount++);
-    //     }, 7000)
-    // }
-  
-    
-        
+    }, [userData.eggs])
 
+    console.log("USER DATA", userData)
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
-            <p className="egg-counter">Number of eggs: {eggCount}</p>
+            <p className="egg-counter">Number of eggs: {userData.eggs}</p>
             
-            <img id="egggg" src="" onClick={spawnEgg}></img>    
+            <img id="egggg" src="" onClick={spawnEgg}></img>
+
+            <button onClick={spawnFood}>Feed!</button>
+
             <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
 
 
@@ -135,10 +141,7 @@ export default function Homepage(props) {
                     src={userArms} className="draggables" id="arm">
                 </motion.img>
             </motion.div>
-            {/* <motion.img 
-                drag
-                dragConstraints={windowdim}
-                src={require("../assets/wheat.jpg")}></motion.img> */}
+            <motion.img id="wheaties" src="" initial={{ x: 350, y: -1000 }} animate={{ x: 350, y: -500 }} transition={{ duration: 0.75, type: 'spring', bounce: 0.25 }}></motion.img>
 
         </div>
 

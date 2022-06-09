@@ -1,3 +1,5 @@
+const { default: axios } = require("axios")
+
 //DEVELOP
 const BASE_URL = "http://localhost:3001"
 //PROD
@@ -42,12 +44,16 @@ module.exports = {
             })
     },
     updateEggs: (userId, eggs) => {
-        return fetch(`${BASE_URL}/api/users/${userId}`, {
-            method:"PUT",
-            body: eggs
-        }).then(()=>{
-            console.log("data updated in api")
-        })
+        console.log("eggs", eggs);
+        // return fetch(, {
+        //     method:"PUT",
+        //     body: JSON.stringify({"eggs":eggs})
+        // }).then(()=>{
+        //     console.log("data updated in api")
+        // })
+        return axios.put(`${BASE_URL}/api/users/${userId}`, {
+            "eggs": eggs,
+        }).then(data => console.log(data))
     },
     getAllItems: () => {
         return fetch(`${BASE_URL}/api/categories/2`)
