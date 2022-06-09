@@ -1,7 +1,3 @@
-body{
-    background-color: green;
-}
-
 .btns{
     display:flex;
     flex-direction: column;
