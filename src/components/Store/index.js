@@ -16,7 +16,7 @@ import ShoeStore from '../ShoeStore';
 import ItemStore from '../ItemStore';
 
 
-const drawerWidth = 300;
+const drawerWidth = 280;
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -74,8 +74,11 @@ export default function Store() {
         open={open}
       >
         <DrawerHeader>
+          <Typography className='store-title' variant="h5" noWrap sx={{ flexGrow: 1, ml:1 }} component="div">
+              Accessory Store
+          </Typography>
           <IconButton onClick={handleDrawerClose} >
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon className='custom-arrow' /> : <ChevronRightIcon className='custom-arrow' />}
           </IconButton>
         </DrawerHeader>
         <Divider />
