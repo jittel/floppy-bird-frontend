@@ -1,14 +1,12 @@
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -60,7 +58,7 @@ export default function HatStore() {
               <ListItemAvatar >
                 <Avatar
                   alt={hat.accessory_name}
-                  src={hat.accessory_img}
+                  src={hat.accessory_zoom}
                   sx={{ width: 56, height: 56 }}
                 />
               </ListItemAvatar>
