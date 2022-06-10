@@ -40,12 +40,10 @@ export default function Homepage(props) {
         }
     });
     useEffect(() => {
-        // console.log("data data", props.loggedInData)
         const lsData = window.localStorage.getItem("user data");
         API.getOneUser(props.loggedInData.id).then((data) => {
             console.log("data data", data)
             if (lsData) {
-                // console.log("LOCAL STORAGE DATA", JSON.parse(lsData))
                 setUserData(JSON.parse(lsData))
             } else {
                 setUserData({
@@ -67,7 +65,6 @@ export default function Homepage(props) {
         }
     }, [userData])
 
-    // const [eggArr, setEggs] = useState([]);
     const spawnEgg = (event) => {
         event.target.src = "";
     }
@@ -80,25 +77,17 @@ export default function Homepage(props) {
     useEffect(() => {
         setTimeout(() => {
             console.log('time')
-            // setCount(eggCount + 1);
             setUserData(prevState => ({
                 ...prevState,
                 eggs: userData.eggs + 1
             }))
             document.getElementById("egggg").setAttribute("src", egg)
-            // eggArr.push({image: egg, xpos: 100, ypos: 100, width: 100, height: 100})
         }, 5000)
         API.updateEggs(userData.id, userData.eggs).then(() => {
             console.log("data updated")
         })
       }, [userData.eggs])
 
-    }, [eggCount])
-    // } else {
-    //     setTimeout(() =>{
-    //         setCount(eggCount++);
-    //     }, 7000)
-    // }
   
     const peckAnim = {
         init: {
@@ -141,20 +130,14 @@ export default function Homepage(props) {
             <motion.div variants={peckAnim} animate={!isToggled ? "init" : "anim"} transistion="transition" id="chickenCont">
                 <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
                 <motion.img
-                    // drag
-                    // dragConstraints={windowdim}
                     initial={{ y: -500 }}
                     src={userHat} className="draggables" id="hat">
                 </motion.img>
                 <motion.img
-                    // drag
-                    // dragConstraints={windowdim}
                     initial={{ y: -285 }}
                     src={userShoes} className="draggables" id="shoe">
                 </motion.img>
                 <motion.img
-                    // drag
-                    // dragConstraints={windowdim}
                     initial={{ y: -600 }}
                     src={userArms} className="draggables" id="arm">
                 </motion.img>
