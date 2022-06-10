@@ -33,13 +33,11 @@ export default function HatStore() {
 
   const purchaseHat = (event) => {
     const accData = event.target.id
-
-    const regex = /https:\/\/i\.imgur\.com\//i;
-    const result = accData.split(regex)
+    const userID = localStorage.getItem("user data")[6]
+    const result = accData.split(",")
     const hatName = (result[0])
-    const hatUrl = `https://i.imgur.com/${result[1]}`
-    console.log(hatName)
-    console.log(hatUrl)
+    const hatId = result[1]
+    console.log(userID)
 
     if (event.target.id) {
       if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
@@ -87,10 +85,10 @@ export default function HatStore() {
                   </React.Fragment>
                 }
               />
-              <ListItem onClick={purchaseHat} id={hat.accessory_name + hat.accessory_zoom}
+              <ListItem onClick={purchaseHat} id={hat.accessory_name + " , " + hat.id}
                 secondaryAction={
-                  <IconButton id={hat.accessory_name + hat.accessory_zoom} edge="end" aria-label="delete" >
-                    <AttachMoneyIcon id={hat.accessory_name + hat.accessory_zoom} />
+                  <IconButton id={hat.accessory_name + " , " + hat.id} edge="end" aria-label="delete" >
+                    <AttachMoneyIcon id={hat.accessory_name + " , " + hat.id} />
                   </IconButton>
                 }
               ></ListItem>
