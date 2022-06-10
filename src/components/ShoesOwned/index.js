@@ -11,14 +11,14 @@ import Avatar from '@mui/material/Avatar';
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
 
-export default function ShoesOwned() {
+export default function ShoesOwned(props) {
 
     const [shoeInfo, setShoeInfo] = React.useState();
     const [visible, setVisible] = React.useState(true);
     const [isLoading, setLoading] = React.useState(true);
 
     React.useEffect(()=> {
-        API.getAllShoes().then(data => {
+        API.getOneUser(props.loggedInData.id).then(data => {
             setShoeInfo(data.Accessories);
             setLoading(false);
           })

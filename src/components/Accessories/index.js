@@ -67,8 +67,8 @@ export default function Store(props) {
         </DrawerHeader>
         <Divider />
         <HatsOwned loggedInData={props.loggedInData} />
-        <ShoesOwned />
-        <ItemsOwned />
+        <ShoesOwned loggedInData={props.loggedInData} />
+        <ItemsOwned loggedInData={props.loggedInData} />
       </Drawer>
 
       <Toolbar className='custom-tool'>

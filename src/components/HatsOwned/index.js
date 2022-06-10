@@ -23,7 +23,7 @@ export default function HatsOwned(props) {
   React.useEffect(() => {
     API.getOneUser(props.loggedInData.id).then(data => {
       setHatInfo(data.Accessories);
-      // console.log("ACCESSORY DATA", data.Accessories)
+      console.log("ACCESSORY DATA", data.Accessories)
       setLoading(false);
     })
   }, []);
