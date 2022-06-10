@@ -74,8 +74,6 @@ function App() {
           }
         })
         setToken(data.token)
-        // console.log("----->", loggedInData)
-        // window.location.replace('/homepage')
       }
     })
   }

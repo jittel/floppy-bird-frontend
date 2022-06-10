@@ -14,7 +14,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
 
-export default function HatStore() {
+export default function HatsOwned() {
 
   const [hatInfo, setHatInfo] = React.useState();
   const [visible, setVisible] = React.useState(true);
@@ -32,23 +32,15 @@ export default function HatStore() {
   };
 
   const purchaseHat = (event) => {
-    const accData=event.target.id
-    
-    const regex = /https:\/\/i\.imgur\.com\//i;
-    const result = accData.split(regex)
-    const hatName = (result[0])
-    const hatUrl = `https://i.imgur.com/${result[1]}`
-    console.log(hatName) 
-    console.log(hatUrl) 
-
+    const hatName=event.target.id
+    console.log(hatName)
     if (event.target.id) {
-    if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
+    if (window.confirm(`Are you sure you wish to purchase ${hatName} for 1 Egg?`)) {
      console.log('purchase function')
      //Async await the users egg data and inventory data. 
      //Subtract 1 Egg from user data and put hatName into accessory data
   }
   }};
-
 
   if (isLoading) {
     return <div>Loading</div>
@@ -87,10 +79,10 @@ export default function HatStore() {
                   </React.Fragment>
                 }
               />
-               <ListItem onClick={purchaseHat} id={hat.accessory_name +  hat.accessory_zoom}
+               <ListItem onClick={purchaseHat} id={hat.accessory_name}
                   secondaryAction={
-                    <IconButton id={hat.accessory_name +  hat.accessory_zoom} edge="end" aria-label="delete" >
-                      <AttachMoneyIcon id={hat.accessory_name +  hat.accessory_zoom}/>
+                    <IconButton id={hat.accessory_name} edge="end" aria-label="delete" >
+                      <AttachMoneyIcon id={hat.accessory_name}/>
                     </IconButton>
                   }
                 ></ListItem>
