@@ -11,7 +11,7 @@ export default function Home(props) {
     // console.log("----->", userObj.eggs)
     return (
         <div>
-            <Header />
+            <Header loggedInData={props.loggedInData} />
             <Logout logout={props.logout} />
             <Homepage loggedInData={props.loggedInData} userId={props.userId}/>
         </div>

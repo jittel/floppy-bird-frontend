@@ -26,7 +26,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }));
 
-export default function Store() {
+export default function Store(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -66,9 +66,9 @@ export default function Store() {
           </Typography>
         </DrawerHeader>
         <Divider />
-        <HatsOwned />
-        <ShoesOwned />
-        <ItemsOwned />
+        <HatsOwned loggedInData={props.loggedInData} />
+        <ShoesOwned loggedInData={props.loggedInData} />
+        <ItemsOwned loggedInData={props.loggedInData} />
       </Drawer>
 
       <Toolbar className='custom-tool'>
