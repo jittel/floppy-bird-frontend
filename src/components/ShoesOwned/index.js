@@ -17,19 +17,24 @@ export default function ShoesOwned(props) {
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
 
+  const userID = JSON.parse(localStorage.getItem("user data"))
+
   React.useEffect(() => {
-    API.getOneUser(props.loggedInData.id).then(data => {
-      data.Accessories.forEach(element => {
-        if (element.CategoryId === 3) {
-          // console.log("element", element)
-          setShoeInfo(element);
-          setLoading(false);
-          console.log("shoe info", shoeInfo)
-        }
-      });
-      // setShoeInfo(data.Accessories);
-      // setLoading(false);
-    })
+    async function getStuff() {
+      API.getOneUser(userID.id).then(res=>{
+        console.log(res)
+        return res.json()
+      }).then(data => {
+        data.Accessories.forEach(element => {
+          if (element.CategoryId === 3) {
+            setShoeInfo([element]);
+            setLoading(false);
+            console.log("shoe info", shoeInfo)
+          }
+        });
+      })
+    }
+    getStuff()
   }, []);
 
   const handleNestClick = () => {
