@@ -33,6 +33,7 @@ export default function Login(props) {
         <Box
             component="form"
             className='customFormBox'
+            onSubmit={loginSubmit}
         >
             <FormControl>
                 <TextField 
