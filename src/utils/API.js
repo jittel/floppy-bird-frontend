@@ -45,15 +45,9 @@ module.exports = {
     },
     updateEggs: (userId, eggs) => {
         console.log("eggs", eggs);
-        // return fetch(, {
-        //     method:"PUT",
-        //     body: JSON.stringify({"eggs":eggs})
-        // }).then(()=>{
-        //     console.log("data updated in api")
-        // })
         return axios.put(`${BASE_URL}/api/users/${userId}`, {
             "eggs": eggs,
-        }).then(data => console.log(data))
+        }).then(data => console.log("this the request data", data))
     },
     getAllItems: () => {
         return fetch(`${BASE_URL}/api/categories/2`)

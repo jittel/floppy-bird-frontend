@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './Style.css'
-import {
-    useNavigate
-  } from "react-router-dom";
+import './style.css'
+import { useNavigate } from "react-router-dom";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { FormControl } from '@mui/material';
+
 
 export default function Login(props) {
     let navigate = useNavigate();
@@ -28,12 +30,46 @@ export default function Login(props) {
     }
 
     return (
-        <div className='btns'>
-            <form onSubmit={loginSubmit}>
+        <Box
+            component="form"
+            className='customFormBox'
+        >
+            <FormControl>
+                <TextField 
+                    className='custom-input'
+                    variant='outlined'
+                    color='secondary'
+                    value={loginData.username}
+                    name="loginUsername"
+                    label="username"
+                    type="text"
+                    onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
+                ></TextField>
+            </FormControl>
+            <br></br>
+            <FormControl>
+                <TextField 
+                    className='custom-input'
+                    variant='outlined'
+                    color='secondary'
+                    value={loginData.password}
+                    name="loginPassword"
+                    label="password"
+                    type="password"
+                    onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                ></TextField>
+            </FormControl>
+            <br></br>
+            <button className='submitButton' >Login</button>
+        </Box>
+    )
+}
+
+{/* <div className='btns'>
+            <form onSubmit={loginSubmit} className='customForm'>
                 <input value={loginData.username} type="text" name="loginUsername" placeholder="username" onChange={(e) => setLoginData({ ...loginData, username: e.target.value })} />
+
                 <input value={loginData.password} type="password" name="loginPassword" onChange={(e) => setLoginData({ ...loginData, password: e.target.value })} />
                 <button className='submitButton'>Login</button>
             </form>
-        </div>
-    )
-}
+        </div> */}
