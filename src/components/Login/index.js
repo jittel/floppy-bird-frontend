@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { FormControl } from '@mui/material';
+import logo from '../assets/floppybird_name_crop.png';
 
 
 export default function Login(props) {
@@ -35,6 +36,7 @@ export default function Login(props) {
             className='customFormBox'
             onSubmit={loginSubmit}
         >
+            <img src={logo} alt='floppy bird logo' className='introLogo'></img>
             <FormControl>
                 <TextField 
                     className='custom-input'

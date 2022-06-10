@@ -1,3 +1,7 @@
+.introLogo {
+    margin-bottom: 60px;
+}
+
 .customFormBox{
     display:flex;
     flex-direction: column;
