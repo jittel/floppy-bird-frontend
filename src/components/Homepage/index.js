@@ -42,7 +42,7 @@ export default function Homepage(props) {
     useEffect(() => {
         const lsData = window.localStorage.getItem("user data");
         API.getOneUser(props.loggedInData.id).then((data) => {
-            console.log("data data", data)
+            // console.log("data data", data)
             if (lsData) {
                 setUserData(JSON.parse(lsData))
             } else {
@@ -76,7 +76,7 @@ export default function Homepage(props) {
     // if(isFed === false){
     useEffect(() => {
         setTimeout(() => {
-            console.log('time')
+            // console.log('time')
             setUserData(prevState => ({
                 ...prevState,
                 eggs: userData.eggs + 1
@@ -84,7 +84,7 @@ export default function Homepage(props) {
             document.getElementById("egggg").setAttribute("src", egg)
         }, 5000)
         API.updateEggs(userData.id, userData.eggs).then(() => {
-            console.log("data updated")
+            // console.log("data updated")
         })
       }, [userData.eggs])
 
