@@ -1,0 +1,67 @@
+
+.chicken {
+    z-index:1;
+}
+
+body {
+    /* background-color: rgb(107, 141, 56); */
+    background-color: #fce4ec;
+}
+
+.draggables {
+    display: grid;
+    flex-wrap: wrap;
+    z-index:2;
+}
+
+#chickenCont {
+    display: grid;
+    justify-content: center;
+}
+
+.egg-counter {
+    font-family: sans-serif;
+    font-weight: bold;
+    /* color: aliceblue; */
+    color: #d500f9;
+    font-size: larger;
+    margin-right: 20px;
+}
+
+.chick-name {
+    font-family: sans-serif;
+    font-weight: bold;
+    /* color: aliceblue; */
+    color: #d500f9;
+    display: grid;
+    justify-content: center;
+}
+
+.eggDiv {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: flex-start;
+    margin-left: 25px;
+}
+
+.homeBtn {
+    margin: 5px 20px 20px 20px;
+    background-color: #8e24aa;
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+    padding: 15px 32px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    border-radius: 10px;
+    border: 3px solid #d500f9;
+    width: 200px;
+    box-shadow: inset 0 0 0 0 white;
+    /* transition: ease-out 1s; */
+}
+
+.homeBtn:hover {
+    box-shadow: inset 200px 0 0 0 #d500f9;
+    cursor: pointer;
+}
