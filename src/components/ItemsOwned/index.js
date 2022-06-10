@@ -11,15 +11,16 @@ import Avatar from '@mui/material/Avatar';
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
 
-export default function ItemsOwned() {
+export default function ItemsOwned(props) {
 
     const [itemInfo, setItemInfo] = React.useState();
     const [visible, setVisible] = React.useState(true);
     const [isLoading, setLoading] = React.useState(true);
 
     React.useEffect(()=> {
-        API.getAllItems().then(data => {
+        API.getOneUser(props.loggedInData.id).then(data => {
             setItemInfo(data.Accessories);
+            // console.log("ACCESSORY DATA", data)
             setLoading(false);
           })
     }, []);
