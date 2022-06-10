@@ -14,18 +14,30 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
 
-export default function HatsOwned(props) {
+export default function HatsOwned() {
 
-  const [hatInfo, setHatInfo] = React.useState();
+  const [hatInfo, setHatInfo] = React.useState([]);
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
 
+  const userID = JSON.parse(localStorage.getItem("user data"))
+
   React.useEffect(() => {
-    API.getOneUser(props.loggedInData.id).then(data => {
-      setHatInfo(data.Accessories);
-      console.log("ACCESSORY DATA", data.Accessories)
-      setLoading(false);
-    })
+    async function getStuff() {
+      API.getOneUser(userID.id).then(res=>{
+        console.log(res)
+        return res.json()
+      }).then(data => {
+        data.Accessories.forEach(element => {
+          if (element.CategoryId === 1) {
+            setHatInfo([element]);
+            setLoading(false);
+            console.log("hat info", hatInfo)
+          }
+        });
+      })
+    }
+    getStuff()
   }, []);
 
   const handleNestClick = () => {
@@ -33,15 +45,16 @@ export default function HatsOwned(props) {
   };
 
   const purchaseHat = (event) => {
-    const hatName=event.target.id
+    const hatName = event.target.id
     console.log(hatName)
     if (event.target.id) {
-    if (window.confirm(`Are you sure you wish to purchase ${hatName} for 1 Egg?`)) {
-     console.log('purchase function')
-     //Async await the users egg data and inventory data. 
-     //Subtract 1 Egg from user data and put hatName into accessory data
-  }
-  }};
+      if (window.confirm(`Are you sure you wish to purchase ${hatName} for 1 Egg?`)) {
+        console.log('purchase function')
+        //Async await the users egg data and inventory data. 
+        //Subtract 1 Egg from user data and put hatName into accessory data
+      }
+    }
+  };
 
   if (isLoading) {
     return <div>Loading</div>
@@ -55,7 +68,7 @@ export default function HatsOwned(props) {
       </ListItemButton>
       {!visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {hatInfo.map((hat) => (
+          {hatInfo && hatInfo.map((hat) => (
             <ListItemButton sx={{ pl: 2 }} key={hat.id} >
               <ListItemAvatar >
                 <Avatar
@@ -80,13 +93,13 @@ export default function HatsOwned(props) {
                   </React.Fragment>
                 }
               />
-               <ListItem onClick={purchaseHat} id={hat.accessory_name}
-                  secondaryAction={
-                    <IconButton id={hat.accessory_name} edge="end" aria-label="delete" >
-                      <AttachMoneyIcon id={hat.accessory_name}/>
-                    </IconButton>
-                  }
-                ></ListItem>
+              <ListItem onClick={purchaseHat} id={hat.accessory_name}
+                secondaryAction={
+                  <IconButton id={hat.accessory_name} edge="end" aria-label="delete" >
+                    <AttachMoneyIcon id={hat.accessory_name} />
+                  </IconButton>
+                }
+              ></ListItem>
             </ListItemButton>
           ))}
         </List>

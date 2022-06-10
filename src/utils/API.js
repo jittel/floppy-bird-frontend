@@ -10,7 +10,7 @@ module.exports = {
         return fetch(`${BASE_URL}/api/users`).then(res => res.json())
     },
     getOneUser: userId => {
-        return fetch(`${BASE_URL}/api/users/${userId}`).then(res => res.json())
+        return fetch(`${BASE_URL}/api/users/${userId}`)
     },
     verify: token => {
         return fetch(`${BASE_URL}/api/users/verifyToken`, {

@@ -13,63 +13,75 @@ import { Typography } from '@mui/material';
 
 export default function ItemsOwned(props) {
 
-    const [itemInfo, setItemInfo] = React.useState();
-    const [visible, setVisible] = React.useState(true);
-    const [isLoading, setLoading] = React.useState(true);
+  const [itemInfo, setItemInfo] = React.useState();
+  const [visible, setVisible] = React.useState(true);
+  const [isLoading, setLoading] = React.useState(true);
 
-    React.useEffect(()=> {
-        API.getOneUser(props.loggedInData.id).then(data => {
-            setItemInfo(data.Accessories);
-            // console.log("ACCESSORY DATA", data)
+  const userID = JSON.parse(localStorage.getItem("user data"))
+
+  React.useEffect(() => {
+    async function getStuff() {
+      API.getOneUser(userID.id).then(res=>{
+        console.log(res)
+        return res.json()
+      }).then(data => {
+        data.Accessories.forEach(element => {
+          if (element.CategoryId === 3) {
+            setItemInfo([element]);
             setLoading(false);
-          })
-    }, []);
-
-    const handleNestClick = () => {
-        setVisible(!visible);
-    };
-
-    if (isLoading) {
-        return <div>Loading</div>
+            console.log("item info", itemInfo)
+          }
+        });
+      })
     }
-  
-    return (
-      <List>
-        <ListItemButton onClick={handleNestClick}>
-          <ListItemText primary="Items" />
-          {visible ? <ExpandMore /> : <ExpandLess />}
-        </ListItemButton>
-        { !visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {itemInfo.map((item) => (
-                <ListItemButton sx={{ pl: 2 }} key={item.id}>
-                    <ListItemAvatar>
-                        <Avatar
-                            alt={item.accessory_name}
-                            src={item.accessory_zoom}
-                            sx={{ width: 56, height: 56 }}
-                            />
-                        </ListItemAvatar>
-                    <ListItemText 
-                        primary={item.accessory_name}
-                        secondary={
-                            <React.Fragment>
-                                <Typography
-                                  sx={{ display: 'inline' }}
-                                  component="span"
-                                  variant="caption"
-                                  color="text.primary"
-                                >
-                                Price:
-                                </Typography>
-                                {item.accessory_price}
-                            </React.Fragment>
-                        }
-                        />
-                </ListItemButton>
-            ))}
-          </List>
-        </Collapse>}
-      </List>
-    );
+    getStuff()
+  }, []);
+
+  const handleNestClick = () => {
+    setVisible(!visible);
+  };
+
+  if (isLoading) {
+    return <div>Loading</div>
   }
+
+  return (
+    <List>
+      <ListItemButton onClick={handleNestClick}>
+        <ListItemText primary="Items" />
+        {visible ? <ExpandMore /> : <ExpandLess />}
+      </ListItemButton>
+      {!visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          {itemInfo.map((item) => (
+            <ListItemButton sx={{ pl: 2 }} key={item.id}>
+              <ListItemAvatar>
+                <Avatar
+                  alt={item.accessory_name}
+                  src={item.accessory_zoom}
+                  sx={{ width: 56, height: 56 }}
+                />
+              </ListItemAvatar>
+              <ListItemText
+                primary={item.accessory_name}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      sx={{ display: 'inline' }}
+                      component="span"
+                      variant="caption"
+                      color="text.primary"
+                    >
+                      Price:
+                    </Typography>
+                    {item.accessory_price}
+                  </React.Fragment>
+                }
+              />
+            </ListItemButton>
+          ))}
+        </List>
+      </Collapse>}
+    </List>
+  );
+}
