@@ -4,6 +4,7 @@ import API from "../../utils/API"
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { FormControl } from '@mui/material';
+import logo from '../assets/floppybird_name_crop.png';
 
 export default function Signup() {
 
@@ -40,6 +41,7 @@ export default function Signup() {
             onSubmit={handleFormSubmit}
             className='customFormBox'
         >
+            <img src={logo} alt='floppy bird logo' className='introLogo'></img>
             <FormControl>
                 <TextField 
                     className='custom-input'
