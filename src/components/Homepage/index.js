@@ -117,16 +117,17 @@ export default function Homepage(props) {
     console.log("USER DATA", userData)
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
+            
+            <button className="homeBtn" onClick={() => setIsToggled(isToggled => !isToggled)}>Feed!</button>
+            
             <div className="eggDiv">
-                <p className="egg-counter">Number of eggs: {userData.eggs}</p>
-
+                <p className="egg-counter">Egg Count:  {userData.eggs}</p>
+                
                 <img id="egggg" src="" onClick={spawnEgg}></img>
             </div>
-
-            <button onClick={() => setIsToggled(isToggled => !isToggled)}>Feed!</button>
-
+            
             <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
-
+            
 
             {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
             <motion.div variants={peckAnim} animate={!isToggled ? "init" : "anim"} transistion="transition" id="chickenCont">

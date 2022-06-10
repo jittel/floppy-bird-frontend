@@ -1,10 +1,11 @@
 import React from 'react';
+import './style.css';
 
 export default function Logout(props) {
     console.log(props)
     return (
         <div>
-            <button onClick={props.logout}>Logout</button>
+            <button className='logoutBtn' onClick={props.logout}>Logout</button>
         </div>
     )
 }
