@@ -7,6 +7,9 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
@@ -26,6 +29,25 @@ export default function ItemStore() {
 
     const handleNestClick = () => {
         setVisible(!visible);
+    };
+
+    const purchaseItem = (event) => {
+      const accData = event.target.id
+  
+      const regex = /https:\/\/i\.imgur\.com\//i;
+      const result = accData.split(regex)
+      const hatName = (result[0])
+      const hatUrl = `https://i.imgur.com/${result[1]}`
+      console.log(hatName)
+      console.log(hatUrl)
+  
+      if (event.target.id) {
+        if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
+          console.log('purchase function')
+          //Async await the users egg data and inventory data. 
+          //Subtract 1 Egg from user data and put hatName into accessory data
+        }
+      }
     };
 
     if (isLoading) {
@@ -65,6 +87,13 @@ export default function ItemStore() {
                             </React.Fragment>
                         }
                         />
+                        <ListItem onClick={purchaseItem} id={item.accessory_name + item.accessory_zoom}
+                secondaryAction={
+                  <IconButton id={item.accessory_name + item.accessory_zoom} edge="end" aria-label="delete" >
+                    <AttachMoneyIcon id={item.accessory_name + item.accessory_zoom} />
+                  </IconButton>
+                }
+              ></ListItem>
                 </ListItemButton>
             ))}
           </List>
