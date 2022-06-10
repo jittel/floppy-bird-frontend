@@ -82,7 +82,7 @@ export default function Homepage(props) {
                 eggs: userData.eggs + 1
             }))
             document.getElementById("egggg").setAttribute("src", egg)
-        }, 5000)
+        }, 50000)
         API.updateEggs(userData.id, userData.eggs).then(() => {
             console.log("data updated")
         })
@@ -94,7 +94,7 @@ export default function Homepage(props) {
             rotate: 0
         },
         anim: {
-            rotate: [-90, 0, -90, 0]
+            rotate: [0, 10, -90, -30, -90, 0]
         },
         transition: {
             delay: 2
@@ -117,9 +117,11 @@ export default function Homepage(props) {
     console.log("USER DATA", userData)
     return (
         <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
-            <p className="egg-counter">Number of eggs: {userData.eggs}</p>
+            <div className="eggDiv">
+                <p className="egg-counter">Number of eggs: {userData.eggs}</p>
 
-            <img id="egggg" src="" onClick={spawnEgg}></img>
+                <img id="egggg" src="" onClick={spawnEgg}></img>
+            </div>
 
             <button onClick={() => setIsToggled(isToggled => !isToggled)}>Feed!</button>
 
