@@ -18,8 +18,9 @@ export default function ItemsOwned() {
     const [isLoading, setLoading] = React.useState(true);
 
     React.useEffect(()=> {
-        API.getAllItems().then(data => {
-            setItemInfo(data.Accessories);
+        API.getOneUser().then(data => {
+            // setItemInfo(data.Accessories);
+            console.log("ACCESSORY DATA", data)
             setLoading(false);
           })
     }, []);

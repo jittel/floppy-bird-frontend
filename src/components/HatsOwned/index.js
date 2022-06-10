@@ -14,15 +14,16 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
 
-export default function HatsOwned() {
+export default function HatsOwned(props) {
 
   const [hatInfo, setHatInfo] = React.useState();
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    API.getAllHats().then(data => {
+    API.getOneUser(props.loggedInData.id).then(data => {
       setHatInfo(data.Accessories);
+      // console.log("ACCESSORY DATA", data.Accessories)
       setLoading(false);
     })
   }, []);
