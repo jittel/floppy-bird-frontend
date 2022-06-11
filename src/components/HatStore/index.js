@@ -40,7 +40,7 @@ export default function HatStore() {
     console.log(hatId)
 
     if (event.target.id) {
-      if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
+      if (window.confirm(`Are you sure you wish to purchase ${hatName} for 10 eggs?`)) {
         console.log('purchase function')
         //Async await the users egg data and inventory data. 
         //Subtract 1 Egg from user data and put hatName into accessory data
@@ -69,7 +69,7 @@ export default function HatStore() {
                 <Avatar
                   alt={hat.accessory_name}
                   src={hat.accessory_zoom}
-                  sx={{ width: 56, height: 56 }}
+                  sx={{ width: 56, height: 56, mr: 1 }}
                 />
               </ListItemAvatar>
               <ListItemText
@@ -77,14 +77,22 @@ export default function HatStore() {
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{ display: 'inline' }}
+                      sx={{ display: 'inline', mr: .5 }}
                       component="span"
                       variant="caption"
                       color="text.primary"
                     >
-                      Price:
+                      Price: 
                     </Typography>
                     {hat.accessory_price}
+                    <Typography
+                      sx={{ display: 'inline', ml: .5 }}
+                      component="span"
+                      variant="caption"
+                      color="text.primary"
+                    >
+                      eggs 
+                    </Typography>
                   </React.Fragment>
                 }
               />
