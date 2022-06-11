@@ -19,6 +19,7 @@ export default function HatStore() {
   const [hatInfo, setHatInfo] = React.useState();
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
+  const userID = JSON.parse(localStorage.getItem("user data"))
 
   React.useEffect(() => {
     API.getAllHats().then(data => {
@@ -33,19 +34,19 @@ export default function HatStore() {
 
   const purchaseHat = (event) => {
     const accData = event.target.id
-
-    const regex = /https:\/\/i\.imgur\.com\//i;
-    const result = accData.split(regex)
+    const result = accData.split(",")
     const hatName = (result[0])
-    const hatUrl = `https://i.imgur.com/${result[1]}`
-    console.log(hatName)
-    console.log(hatUrl)
+    const hatId = result[1]
+    console.log(hatId)
 
     if (event.target.id) {
-      if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
+      if (window.confirm(`Are you sure you wish to purchase ${hatName} for 10 eggs?`)) {
         console.log('purchase function')
         //Async await the users egg data and inventory data. 
         //Subtract 1 Egg from user data and put hatName into accessory data
+        API.addAccessory(5, hatId).then(() => {
+          // console.log("data updated")
+      })
       }
     }
   };
@@ -68,7 +69,7 @@ export default function HatStore() {
                 <Avatar
                   alt={hat.accessory_name}
                   src={hat.accessory_zoom}
-                  sx={{ width: 56, height: 56 }}
+                  sx={{ width: 56, height: 56, mr: 1 }}
                 />
               </ListItemAvatar>
               <ListItemText
@@ -76,21 +77,29 @@ export default function HatStore() {
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{ display: 'inline' }}
+                      sx={{ display: 'inline', mr: .5 }}
                       component="span"
                       variant="caption"
                       color="text.primary"
                     >
-                      Price:
+                      Price: 
                     </Typography>
                     {hat.accessory_price}
+                    <Typography
+                      sx={{ display: 'inline', ml: .5 }}
+                      component="span"
+                      variant="caption"
+                      color="text.primary"
+                    >
+                      eggs 
+                    </Typography>
                   </React.Fragment>
                 }
               />
-              <ListItem onClick={purchaseHat} id={hat.accessory_name + hat.accessory_zoom}
+              <ListItem onClick={purchaseHat} id={hat.accessory_name + " , " + hat.id}
                 secondaryAction={
-                  <IconButton id={hat.accessory_name + hat.accessory_zoom} edge="end" aria-label="delete" >
-                    <AttachMoneyIcon id={hat.accessory_name + hat.accessory_zoom} />
+                  <IconButton id={hat.accessory_name + " , " + hat.id} edge="end" aria-label="delete" >
+                    <AttachMoneyIcon id={hat.accessory_name + " , " + hat.id} />
                   </IconButton>
                 }
               ></ListItem>

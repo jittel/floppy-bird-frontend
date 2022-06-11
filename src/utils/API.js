@@ -66,5 +66,10 @@ module.exports = {
             "equip_hats": hat,
         }).then(data => console.log("this the request data", data))
     },
+    addAccessory: (userId, accessory) => {
+        return axios.post(`${BASE_URL}/api/users/accessory/${userId}`, {
+            "accessoryId": accessory,
+        }).then(data => console.log("this the request data", data))
+    }
 
 }
