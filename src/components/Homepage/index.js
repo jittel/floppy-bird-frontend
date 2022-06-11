@@ -4,7 +4,7 @@ import arms from "../assets/arms/index.js";
 import hats from "../assets/hats/index.js";
 import shoes from "../assets/shoes/index.js";
 import egg from "../assets/egg.png";
-import wheat from "../assets/wheat.jpg";
+import wheat from "../assets/wheat.png";
 import './Style.css'
 import Accessories from "../Accessories/index.js"
 import API from '../../utils/API';
@@ -23,13 +23,20 @@ export default function Homepage(props) {
 
     const windowdim = useRef(null);
 
-    const userSelectedArms = arms.beer
-    const userSelectedHat = hats.spinny
-    const userSelectedShoes = shoes.slides
+    const userID = JSON.parse(localStorage.getItem("user data"))
 
-    const userHat = userSelectedHat
-    const userArms = userSelectedArms
-    const userShoes = userSelectedShoes
+    React.useEffect(() => {
+        async function getHat() {
+            API.getOneUser(userID.id).then(res=>{
+                console.log(res)
+                return res.json()
+            }).then(data => {
+
+            })
+        }
+    })
+
+    
 
     let [userData, setUserData] = useState({
         id: '',
@@ -134,15 +141,16 @@ export default function Homepage(props) {
                 <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
                 <motion.img
                     initial={{ y: -500 }}
-                    src={userHat} className="draggables" id="hat">
+                    src="" className="draggables" id="hat">
+                        {/* src={chicken.equip_hats} */}
                 </motion.img>
                 <motion.img
                     initial={{ y: -285 }}
-                    src={userShoes} className="draggables" id="shoe">
+                    src="" className="draggables" id="shoe">
                 </motion.img>
                 <motion.img
                     initial={{ y: -600 }}
-                    src={userArms} className="draggables" id="arm">
+                    src="" className="draggables" id="arm">
                 </motion.img>
             </motion.div>
             <motion.img id="wheaties" src={wheat} variants={foodAnim} animate={!isToggled ? "hidden" : "visible"} ></motion.img>

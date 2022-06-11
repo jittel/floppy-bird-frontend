@@ -10,11 +10,14 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+// import Homepage from './Homepage/index.js';
 
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
 
 export default function HatsOwned() {
+
+  // console.log(Homepage);
 
   const [hatInfo, setHatInfo] = React.useState([]);
   const [visible, setVisible] = React.useState(true);
@@ -44,21 +47,27 @@ export default function HatsOwned() {
     setVisible(!visible);
   };
 
-  const purchaseHat = (event) => {
-    const hatName = event.target.id
-    console.log(hatName)
-    if (event.target.id) {
-      if (window.confirm(`Are you sure you wish to purchase ${hatName} for 1 Egg?`)) {
-        console.log('purchase function')
-        //Async await the users egg data and inventory data. 
-        //Subtract 1 Egg from user data and put hatName into accessory data
-      }
-    }
-  };
-
   if (isLoading) {
     return <div>Loading</div>
   }
+
+  const changeHat = (event) => {
+    const accData = event.target.id
+    const result = accData.split(",")
+    const hatName = (result[0])
+    const hatUrl = result[1]
+    console.log(hatUrl)
+    if (event.target.id) {
+      if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
+        console.log('purchase function')
+        //Async await the users egg data and inventory data.
+        //Subtract 1 Egg from user data and put hatName into accessory data
+        API.changeHat(5, hatUrl).then(() => {
+          // console.log("data updated")
+      })
+      }
+    }
+  };
 
   return (
     <List>
@@ -93,10 +102,10 @@ export default function HatsOwned() {
                   </React.Fragment>
                 }
               />
-              <ListItem onClick={purchaseHat} id={hat.accessory_name}
+              <ListItem onClick={changeHat} id={hat.accessory_name + " , " + hat.accessory_img}
                 secondaryAction={
-                  <IconButton id={hat.accessory_name} edge="end" aria-label="delete" >
-                    <AttachMoneyIcon id={hat.accessory_name} />
+                  <IconButton id={hat.accessory_name + " , " + hat.id} edge="end" aria-label="delete" >
+                    <AttachMoneyIcon id={hat.accessory_name + " , " + hat.id} />
                   </IconButton>
                 }
               ></ListItem>
