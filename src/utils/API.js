@@ -61,5 +61,10 @@ module.exports = {
                 return res.json();
             })
     },
+    changeHat: (chickenId, hat) => {
+        return axios.put(`${BASE_URL}/api/chickens/${chickenId}`, {
+            "equip_hats": hat,
+        }).then(data => console.log("this the request data", data))
+    },
 
 }
