@@ -19,6 +19,7 @@ export default function HatStore() {
   const [hatInfo, setHatInfo] = React.useState();
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
+  const userID = JSON.parse(localStorage.getItem("user data"))
 
   React.useEffect(() => {
     API.getAllHats().then(data => {
@@ -33,17 +34,19 @@ export default function HatStore() {
 
   const purchaseHat = (event) => {
     const accData = event.target.id
-    const userID = localStorage.getItem("user data")[6]
     const result = accData.split(",")
     const hatName = (result[0])
     const hatId = result[1]
-    console.log(userID)
+    console.log(hatId)
 
     if (event.target.id) {
       if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
         console.log('purchase function')
         //Async await the users egg data and inventory data. 
         //Subtract 1 Egg from user data and put hatName into accessory data
+        API.addAccessory(5, hatId).then(() => {
+          // console.log("data updated")
+      })
       }
     }
   };

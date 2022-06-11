@@ -61,5 +61,10 @@ module.exports = {
                 return res.json();
             })
     },
+    addAccessory: (userId, accessory) => {
+        return axios.post(`${BASE_URL}/api/users/accessory/${userId}`, {
+            "accessoryId": accessory,
+        }).then(data => console.log("this the request data", data))
+    }
 
 }
