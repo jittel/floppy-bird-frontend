@@ -4,6 +4,7 @@ import IntroPage from "./components/IntroPage";
 import Signup from "./components/Signup";
 import Store from "./components/Store";
 import Home from "./pages/Homepage";
+import { Helmet } from 'react-helmet';
 
 
 import API from '../src/utils/API'
@@ -86,6 +87,10 @@ function App() {
   console.log("LOGGED IN DATA", loggedInData)
   return (
     <AuthorizationContext.Provider value={token}>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Floppy Bird</title>
+        </Helmet>
         <Routes>
           {/* note: intro page should be default but right now its set to HomePage for convenience */}
           <Route path="/" element={<IntroPage />} />
