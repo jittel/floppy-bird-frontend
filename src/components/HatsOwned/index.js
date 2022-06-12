@@ -26,7 +26,7 @@ export default function HatsOwned() {
   const userID = JSON.parse(localStorage.getItem("user data"))
 
   React.useEffect(() => {
-    async function getStuff() {
+    // async function getStuff() {
       API.getOneUser(userID.id).then(res=>{
         console.log(res)
         return res.json()
@@ -39,8 +39,8 @@ export default function HatsOwned() {
           }
         });
       })
-    }
-    getStuff()
+    // }
+    // getStuff()
   }, []);
 
   const handleNestClick = () => {
