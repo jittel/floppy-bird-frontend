@@ -19,6 +19,7 @@ export default function ShoeStore() {
   const [shoeInfo, setShoeInfo] = React.useState();
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
+  const userID = JSON.parse(localStorage.getItem("user data"))
 
   React.useEffect(() => {
     API.getAllShoes().then(data => {
@@ -33,19 +34,19 @@ export default function ShoeStore() {
 
   const purchaseShoe = (event) => {
     const accData = event.target.id
-
-    const regex = /https:\/\/i\.imgur\.com\//i;
-    const result = accData.split(regex)
-    const hatName = (result[0])
-    const hatUrl = `https://i.imgur.com/${result[1]}`
-    console.log(hatName)
-    console.log(hatUrl)
+    const result = accData.split(",")
+    const shoeName = (result[0])
+    const shoeId = result[1]
+    console.log(shoeName)
 
     if (event.target.id) {
-      if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
+      if (window.confirm(`Are you sure you wish to purchase ${shoeName} for 15 eggs?`)) {
         console.log('purchase function')
         //Async await the users egg data and inventory data. 
-        //Subtract 1 Egg from user data and put hatName into accessory data
+        //Subtract 1 Egg from user data and put shoeName into accessory data
+        API.addAccessory(userID.id, shoeId).then(() => {
+          console.log(`added shoe with id of ${shoeId}`)
+        })
       }
     }
   };
@@ -68,7 +69,7 @@ export default function ShoeStore() {
                 <Avatar
                   alt={shoe.accessory_name}
                   src={shoe.accessory_zoom}
-                  sx={{ width: 56, height: 56 }}
+                  sx={{ width: 56, height: 56, mr: 1 }}
                 />
               </ListItemAvatar>
               <ListItemText
@@ -76,7 +77,7 @@ export default function ShoeStore() {
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{ display: 'inline' }}
+                      sx={{ display: 'inline', mr: .5 }}
                       component="span"
                       variant="caption"
                       color="text.primary"
@@ -84,13 +85,21 @@ export default function ShoeStore() {
                       Price:
                     </Typography>
                     {shoe.accessory_price}
+                    <Typography
+                      sx={{ display: 'inline', ml: .5 }}
+                      component="span"
+                      variant="caption"
+                      color="text.primary"
+                    >
+                      eggs
+                    </Typography>
                   </React.Fragment>
                 }
               />
-              <ListItem onClick={purchaseShoe} id={shoe.accessory_name + shoe.accessory_zoom}
+              <ListItem onClick={purchaseShoe} id={shoe.accessory_name + "," + shoe.id}
                 secondaryAction={
-                  <IconButton id={shoe.accessory_name + shoe.accessory_zoom} edge="end" aria-label="delete" >
-                    <AttachMoneyIcon id={shoe.accessory_name + shoe.accessory_zoom} />
+                  <IconButton id={shoe.accessory_name + "," + shoe.id} edge="end" aria-label="delete" >
+                    <AttachMoneyIcon id={shoe.accessory_name + "," + shoe.id} />
                   </IconButton>
                 }
               ></ListItem>

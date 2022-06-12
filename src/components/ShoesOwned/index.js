@@ -7,7 +7,9 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-
+import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
 
@@ -17,71 +19,82 @@ export default function ShoesOwned(props) {
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
 
-  const userID = JSON.parse(localStorage.getItem("user data"))
+  function checkShoe(num) {
+    return num.CategoryId == 3;
+  }
 
   React.useEffect(() => {
-    async function getStuff() {
-      API.getOneUser(userID.id).then(res=>{
+    async function getShoes() {
+      API.getOneUser(props.loggedInData.id).then(res => {
         console.log(res)
         return res.json()
       }).then(data => {
-        data.Accessories.forEach(element => {
-          if (element.CategoryId === 3) {
-            setShoeInfo([element]);
-            setLoading(false);
-            console.log("shoe info", shoeInfo)
-          }
-        });
+        const shoeResult = data.Accessories.filter(checkShoe)
+        setShoeInfo(shoeResult)
+        setLoading(false)
+        // console.log("shoe info", shoeInfo)
       })
     }
-    getStuff()
-  }, []);
+    getShoes()
+  }, [isLoading]);
 
   const handleNestClick = () => {
     setVisible(!visible);
   };
 
+  const changeShoe = (event) => {
+    const accData = event.target.id
+    const result = accData.split(",")
+    const shoeName = (result[0])
+    const shoeUrl = result[1]
+    console.log(shoeUrl)
+    if (event.target.id) {
+      if (window.confirm(`Are you sure you wish to equip ${shoeName}`)) {
+        console.log('equip function')
+        //Async await the users egg data and inventory data.
+        //Subtract 1 Egg from user data and put shoeName into accessory data
+        API.changeShoe(props.loggedInData.id, shoeUrl).then(() => {
+          console.log("shoe changed")
+        })
+      }
+    }
+  };
+
   if (isLoading) {
     return <div>Loading</div>
-  }
-
-  return (
-    <List>
-      <ListItemButton onClick={handleNestClick}>
-        <ListItemText primary="Shoes" />
-        {visible ? <ExpandMore /> : <ExpandLess />}
-      </ListItemButton>
-      {!visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {shoeInfo.map((shoe) => (
-            <ListItemButton sx={{ pl: 2 }} key={shoe.id}>
-              <ListItemAvatar>
-                <Avatar
-                  alt={shoe.accessory_name}
-                  src={shoe.accessory_zoom}
-                  sx={{ width: 56, height: 56 }}
+  } else {
+    return (
+      <List>
+        <ListItemButton onClick={handleNestClick}>
+          <ListItemText primary="Shoes" />
+          {visible ? <ExpandMore /> : <ExpandLess />}
+        </ListItemButton>
+        {!visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {shoeInfo && shoeInfo.map((shoe) => (
+              <ListItemButton sx={{ pl: 2 }} key={shoe.id}>
+                <ListItemAvatar>
+                  <Avatar
+                    alt={shoe.accessory_name}
+                    src={shoe.accessory_zoom}
+                    sx={{ width: 56, height: 56, mr: 1 }}
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={shoe.accessory_name}
                 />
-              </ListItemAvatar>
-              <ListItemText
-                primary={shoe.accessory_name}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="caption"
-                      color="text.primary"
-                    >
-                      Price:
-                    </Typography>
-                    {shoe.accessory_price}
-                  </React.Fragment>
-                }
-              />
-            </ListItemButton>
-          ))}
-        </List>
-      </Collapse>}
-    </List>
-  );
+                <ListItem onClick={changeShoe} id={shoe.accessory_name + " , " + shoe.accessory_img}
+                  secondaryAction={
+                    <IconButton id={shoe.accessory_name + " , " + shoe.id} edge="end" aria-label="delete" >
+                      <AttachMoneyIcon id={shoe.accessory_name + " , " + shoe.id} />
+                    </IconButton>
+                  }
+                ></ListItem>
+              </ListItemButton>
+            ))}
+          </List>
+        </Collapse>}
+      </List>
+    );
+  }
 }

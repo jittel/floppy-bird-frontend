@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Floppy Bird
+![license_badge](https://img.shields.io/badge/license-MIT-blueviolet)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Description
+A web application in which users care for & dress up a virtual chicken. 
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Deployed Application
+[FloppyBird](https://floppybrd.herokuapp.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Table of Contents
+* [Usage](#usage)
+* [License](#license)
+* [Credits](#credits)
+* [Contributing](#contributing)
+* [Questions](#questions)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
+Users begin by creating an account & naming their chicken. Once logged in, the user is brought to the homepage. Here, the user can feed their chicken & see their egg count rise. The user can then purchase various accessories for their chicken using eggs as currency. The button on the left side of the header opens the store. When the user selects a category, a nested list will expand to display the various accessories they can purchase for their chicken. Once an accessory is purchased, it will populate in their accessory inventory. The button on the right side of the header opens the user's inventory. Here, the user can click on any accessory to put it on their chicken.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
+This project is licenced by [MIT](https://choosealicense.com/licenses/mit/).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Credits
+A big thank you to Miranda for our beautiful artwork!
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contributing
+If you have questions or would like to contribute, please contact our contributors via the links below.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Questions
+For any questions, please reach out to one of our contributors: 
 
-## Learn More
+Nate Ginn, via [GitHub](https://github.com/jittel).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Lola Applegate, via [GitHub](https://github.com/lola-violet) or email at [lolaviolet.dev@gmail.com](mailto:lolaviolet.dev@gmail.com).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Stefan Felbeck, via [GitHub](https://github.com/SFelbeck) or email at [stefanfelbeck@gmail.com](mailto:stefanfelbeck@gmail.com).
 
-### Code Splitting
+Jeff Hicks, via [GitHub](https://github.com/Jixxin) or email at [hicks.jeff@me.com](mailto:hicks.jeff@me.com).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
