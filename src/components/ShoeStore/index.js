@@ -42,7 +42,7 @@ export default function ShoeStore() {
     console.log(hatUrl)
 
     if (event.target.id) {
-      if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
+      if (window.confirm(`Are you sure you wish to purchase ${hatName} for 15 eggs?`)) {
         console.log('purchase function')
         //Async await the users egg data and inventory data. 
         //Subtract 1 Egg from user data and put hatName into accessory data
@@ -68,7 +68,7 @@ export default function ShoeStore() {
                 <Avatar
                   alt={shoe.accessory_name}
                   src={shoe.accessory_zoom}
-                  sx={{ width: 56, height: 56 }}
+                  sx={{ width: 56, height: 56, mr: 1 }}
                 />
               </ListItemAvatar>
               <ListItemText
@@ -76,7 +76,7 @@ export default function ShoeStore() {
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{ display: 'inline' }}
+                      sx={{ display: 'inline', mr: .5 }}
                       component="span"
                       variant="caption"
                       color="text.primary"
@@ -84,6 +84,14 @@ export default function ShoeStore() {
                       Price:
                     </Typography>
                     {shoe.accessory_price}
+                    <Typography
+                      sx={{ display: 'inline', ml: .5 }}
+                      component="span"
+                      variant="caption"
+                      color="text.primary"
+                    >
+                      eggs 
+                    </Typography>
                   </React.Fragment>
                 }
               />
