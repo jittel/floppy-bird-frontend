@@ -17,15 +17,13 @@ export default function ItemsOwned(props) {
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
 
-  const userID = JSON.parse(localStorage.getItem("user data"))
-
   function checkItem(num) {
     return num.CategoryId == 2;
   }
 
   React.useEffect(() => {
     async function getItems() {
-      API.getOneUser(userID.id).then(res => {
+      API.getOneUser(props.loggedInData.id).then(res => {
         console.log(res)
         return res.json()
       }).then(data => {

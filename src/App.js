@@ -45,7 +45,7 @@ function App() {
   useEffect(() => {
     if (token) {
       API.verify(token).then(userData => {
-        console.log("USER DATA", userData)
+        // console.log("USER DATA", userData)
         if (userData.userId) {
           setIsLoggedIn(true);
           setUserId(userData.userId)
@@ -84,7 +84,7 @@ function App() {
     localStorage.removeItem("token")
     localStorage.removeItem("user data")
   }
-  console.log("LOGGED IN DATA", loggedInData)
+  // console.log("LOGGED IN DATA", loggedInData)
   return (
     <AuthorizationContext.Provider value={token}>
         <Helmet>
