@@ -15,6 +15,7 @@ import {
 
 export default function Homepage(props) {
     let navigate = useNavigate();
+    let [hatLink, setHatLink] = useState('')
 
     const savedToken = localStorage.getItem("token");
     if (!savedToken) {
@@ -23,20 +24,8 @@ export default function Homepage(props) {
 
     const windowdim = useRef(null);
 
-    const userID = JSON.parse(localStorage.getItem("user data"))
+    // const userID = JSON.parse(localStorage.getItem("user data"))
 
-    React.useEffect(() => {
-        async function getHat() {
-            API.getOneUser(userID.id).then(res=>{
-                console.log(res)
-                return res.json()
-            }).then(data => {
-
-            })
-        }
-    })
-
-    
 
     let [userData, setUserData] = useState({
         id: props.loggedInData.id,
@@ -72,6 +61,20 @@ export default function Homepage(props) {
         }
     }, [userData])
 
+    React.useEffect(() => {
+        async function getHat() {
+            API.getOneUser(props.loggedInData.id).then(res => {
+                console.log(res)
+                return res.json()
+            }).then(data => {
+                // console.log("this is the user data that has the hat stuff", data.Chicken.equip_hats)
+                setHatLink(data.Chicken.equip_hats);
+                console.log(hatLink)
+            })
+        }
+        getHat().then(() => console.log("got chicken hat link"))
+    }, [])
+
     const spawnEgg = (event) => {
         event.target.src = "";
     }
@@ -93,9 +96,9 @@ export default function Homepage(props) {
         API.updateEggs(userData.id, userData.eggs).then(() => {
             console.log("data updated")
         })
-      }, [userData.eggs])
+    }, [userData.eggs])
 
-  
+
     const peckAnim = {
         init: {
             rotate: 0
@@ -107,7 +110,7 @@ export default function Homepage(props) {
             delay: 2
         }
     }
-        
+
     const foodAnim = {
         hidden: {
             opacity: 0
@@ -116,47 +119,50 @@ export default function Homepage(props) {
             opacity: 1,
             x: 350,
             y: -500,
-            transistion: {duration: 0.75, type: 'spring', bounce: 0.25}
-            
+            transistion: { duration: 0.75, type: 'spring', bounce: 0.25 }
+
         }
     }
 
-    console.log("USER DATA", userData)
-    return (
-        <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
-            
-            <button className="homeBtn" onClick={() => setIsToggled(isToggled => !isToggled)}>Feed!</button>
-            
-            <div className="eggDiv">
-                <p className="egg-counter">Egg Count:  {userData.eggs}</p>
-                
-                <img id="egggg" src="" onClick={spawnEgg}></img>
-            </div>
-            
-            <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
-            
+    if (!hatLink) {
+        return <div>Loading</div>
+    } else {
+        return (
+            <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
 
-            {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
-            <motion.div variants={peckAnim} animate={!isToggled ? "init" : "anim"} transistion="transition" id="chickenCont">
-                <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
-                <motion.img
-                    initial={{ y: -500 }}
-                    src="" className="draggables" id="hat">
+                <button className="homeBtn" onClick={() => setIsToggled(isToggled => !isToggled)}>Feed!</button>
+
+                <div className="eggDiv">
+                    <p className="egg-counter">Egg Count:  {userData.eggs}</p>
+
+                    <img id="egggg" src="" onClick={spawnEgg}></img>
+                </div>
+
+                <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
+
+
+                {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
+                <motion.div variants={peckAnim} animate={!isToggled ? "init" : "anim"} transistion="transition" id="chickenCont">
+                    <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
+                    <motion.img
+                        initial={{ y: -500 }}
+                        src={hatLink} className="draggables" id="hat">
                         {/* src={chicken.equip_hats} */}
-                </motion.img>
-                <motion.img
-                    initial={{ y: -285 }}
-                    src="" className="draggables" id="shoe">
-                </motion.img>
-                <motion.img
-                    initial={{ y: -600 }}
-                    src="" className="draggables" id="arm">
-                </motion.img>
-            </motion.div>
-            <motion.img id="wheaties" src={wheat} variants={foodAnim} animate={!isToggled ? "hidden" : "visible"} ></motion.img>
+                    </motion.img>
+                    <motion.img
+                        initial={{ y: -285 }}
+                        src="" className="draggables" id="shoe">
+                    </motion.img>
+                    <motion.img
+                        initial={{ y: -600 }}
+                        src="" className="draggables" id="arm">
+                    </motion.img>
+                </motion.div>
+                <motion.img id="wheaties" src={wheat} variants={foodAnim} animate={!isToggled ? "hidden" : "visible"} ></motion.img>
 
-        </div>
+            </div>
 
-    )
+        )
 
+    }
 }

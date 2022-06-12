@@ -30,7 +30,7 @@ export default function ItemsOwned(props) {
         const itemResult = data.Accessories.filter(checkItem)
         setItemInfo(itemResult)
         setLoading(false)
-        console.log(itemInfo)
+        // console.log(itemInfo)
       })
     }
     getItems()

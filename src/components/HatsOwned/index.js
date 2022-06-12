@@ -34,7 +34,7 @@ export default function HatsOwned(props) {
         const hatResult = data.Accessories.filter(checkHat)
         setHatInfo(hatResult)
         setLoading(false)
-        console.log("hat info", hatInfo)
+        // console.log("hat info", hatInfo)
       })
     }
     getHats().then(() => console.log("hats loaded"))

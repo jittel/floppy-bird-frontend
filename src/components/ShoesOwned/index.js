@@ -30,7 +30,7 @@ export default function ShoesOwned(props) {
         const shoeResult = data.Accessories.filter(checkShoe)
         setShoeInfo(shoeResult)
         setLoading(false)
-        console.log("shoe info", shoeInfo)
+        // console.log("shoe info", shoeInfo)
       })
     }
     getShoes()
