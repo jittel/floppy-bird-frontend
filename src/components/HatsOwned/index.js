@@ -25,22 +25,19 @@ export default function HatsOwned() {
 
   const userID = JSON.parse(localStorage.getItem("user data"))
 
+  function checkHat(num) {
+    return num.CategoryId == 1;
+  }
+
   React.useEffect(() => {
-    async function getStuff() {
-      API.getOneUser(userID.id).then(res=>{
-        console.log(res)
-        return res.json()
-      }).then(data => {
-        data.Accessories.forEach(element => {
-          if (element.CategoryId === 1) {
-            setHatInfo([element]);
-            setLoading(false);
-            console.log("hat info", hatInfo)
-          }
-        });
-      })
-    }
-    getStuff()
+    API.getOneUser(userID.id).then(res => {
+      console.log(res)
+      return res.json()
+    }).then(data => {
+      const hatResult = data.Accessories.filter(checkHat)
+      setHatInfo(hatResult)
+      console.log(hatInfo)
+    })
   }, []);
 
   const handleNestClick = () => {
@@ -64,7 +61,7 @@ export default function HatsOwned() {
         //Subtract 1 Egg from user data and put hatName into accessory data
         API.changeHat(5, hatUrl).then(() => {
           // console.log("data updated")
-      })
+        })
       }
     }
   };

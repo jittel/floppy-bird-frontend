@@ -44,9 +44,9 @@ export default function HatStore() {
         console.log('purchase function')
         //Async await the users egg data and inventory data. 
         //Subtract 1 Egg from user data and put hatName into accessory data
-        API.addAccessory(5, hatId).then(() => {
-          // console.log("data updated")
-      })
+        API.addAccessory(userID.id, hatId).then(() => {
+          console.log(`added hat with id of ${hatId}`)
+        })
       }
     }
   };
@@ -82,7 +82,7 @@ export default function HatStore() {
                       variant="caption"
                       color="text.primary"
                     >
-                      Price: 
+                      Price:
                     </Typography>
                     {hat.accessory_price}
                     <Typography
@@ -91,7 +91,7 @@ export default function HatStore() {
                       variant="caption"
                       color="text.primary"
                     >
-                      eggs 
+                      eggs
                     </Typography>
                   </React.Fragment>
                 }

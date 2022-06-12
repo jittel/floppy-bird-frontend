@@ -20,21 +20,21 @@ export default function ItemsOwned(props) {
   const userID = JSON.parse(localStorage.getItem("user data"))
 
   React.useEffect(() => {
-    async function getStuff() {
+    // async function getStuff() {
       API.getOneUser(userID.id).then(res=>{
         console.log(res)
         return res.json()
       }).then(data => {
         data.Accessories.forEach(element => {
-          if (element.CategoryId === 3) {
+          if (element.CategoryId === 2) {
             setItemInfo([element]);
             setLoading(false);
             console.log("item info", itemInfo)
           }
         });
       })
-    }
-    getStuff()
+    // }
+    // getStuff()
   }, []);
 
   const handleNestClick = () => {

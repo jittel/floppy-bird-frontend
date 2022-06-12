@@ -20,7 +20,7 @@ export default function ShoesOwned(props) {
   const userID = JSON.parse(localStorage.getItem("user data"))
 
   React.useEffect(() => {
-    async function getStuff() {
+    // async function getStuff() {
       API.getOneUser(userID.id).then(res=>{
         console.log(res)
         return res.json()
@@ -33,8 +33,8 @@ export default function ShoesOwned(props) {
           }
         });
       })
-    }
-    getStuff()
+    // }
+    // getStuff()
   }, []);
 
   const handleNestClick = () => {
