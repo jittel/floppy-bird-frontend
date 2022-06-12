@@ -83,7 +83,7 @@ export default function Homepage(props) {
                 setShoeLink(data.Chicken.equip_shoes);
             })
         }
-        getShoe().then(() => console.log("got chicken hat link"))
+        getShoe().then(() => console.log("got chicken shoe link"))
     }, [])
     React.useEffect(() => {
         async function getItem() {
@@ -91,10 +91,10 @@ export default function Homepage(props) {
                 console.log(res)
                 return res.json()
             }).then(data => {
-                setItemLink(data.Chicken.equip_items);
+                setItemLink(data.Chicken.equip_arms);
             })
         }
-        getItem().then(() => console.log("got chicken hat link"))
+        getItem().then(() => console.log("got chicken item link"))
     }, [])
 
     const spawnEgg = (event) => {
