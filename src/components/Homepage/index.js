@@ -16,6 +16,8 @@ import {
 export default function Homepage(props) {
     let navigate = useNavigate();
     let [hatLink, setHatLink] = useState('')
+    let [shoeLink, setShoeLink] = useState('')
+    let [itemLink, setItemLink] = useState('')
 
     const savedToken = localStorage.getItem("token");
     if (!savedToken) {
@@ -67,12 +69,32 @@ export default function Homepage(props) {
                 console.log(res)
                 return res.json()
             }).then(data => {
-                // console.log("this is the user data that has the hat stuff", data.Chicken.equip_hats)
                 setHatLink(data.Chicken.equip_hats);
-                console.log(hatLink)
             })
         }
         getHat().then(() => console.log("got chicken hat link"))
+    }, [])
+    React.useEffect(() => {
+        async function getShoe() {
+            API.getOneUser(props.loggedInData.id).then(res => {
+                console.log(res)
+                return res.json()
+            }).then(data => {
+                setShoeLink(data.Chicken.equip_shoes);
+            })
+        }
+        getShoe().then(() => console.log("got chicken hat link"))
+    }, [])
+    React.useEffect(() => {
+        async function getItem() {
+            API.getOneUser(props.loggedInData.id).then(res => {
+                console.log(res)
+                return res.json()
+            }).then(data => {
+                setItemLink(data.Chicken.equip_items);
+            })
+        }
+        getItem().then(() => console.log("got chicken hat link"))
     }, [])
 
     const spawnEgg = (event) => {
@@ -151,11 +173,11 @@ export default function Homepage(props) {
                     </motion.img>
                     <motion.img
                         initial={{ y: -285 }}
-                        src="" className="draggables" id="shoe">
+                        src={shoeLink} className="draggables" id="shoe">
                     </motion.img>
                     <motion.img
                         initial={{ y: -600 }}
-                        src="" className="draggables" id="arm">
+                        src={itemLink} className="draggables" id="arm">
                     </motion.img>
                 </motion.div>
                 <motion.img id="wheaties" src={wheat} variants={foodAnim} animate={!isToggled ? "hidden" : "visible"} ></motion.img>
