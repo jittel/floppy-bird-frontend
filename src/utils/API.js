@@ -66,6 +66,16 @@ module.exports = {
             "equip_hats": hat,
         }).then(data => console.log("this the request data", data))
     },
+    changeShoe: (chickenId, shoe) => {
+        return axios.put(`${BASE_URL}/api/chickens/${chickenId}`, {
+            "equip_shoes": shoe,
+        }).then(data => console.log("this the request data", data))
+    },
+    changeItem: (chickenId, arm) => {
+        return axios.put(`${BASE_URL}/api/chickens/${chickenId}`, {
+            "equip_arms": arm,
+        }).then(data => console.log("this the request data", data))
+    },
     addAccessory: (userId, accessory) => {
         return axios.post(`${BASE_URL}/api/users/accessory/${userId}`, {
             "accessoryId": accessory,

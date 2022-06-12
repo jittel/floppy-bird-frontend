@@ -36,6 +36,24 @@ export default function ItemsOwned(props) {
     getItems()
   }, [isLoading]);
 
+  const changeItem = (event) => {
+    const accData = event.target.id
+    const result = accData.split(",")
+    const itemName = (result[0])
+    const itemUrl = result[1]
+    console.log(itemUrl)
+    if (event.target.id) {
+      if (window.confirm(`Are you sure you wish to equip ${itemName}`)) {
+        console.log('equip function')
+        //Async await the users egg data and inventory data.
+        //Subtract 1 Egg from user data and put hatName into accessory data
+        API.changeItem(props.loggedInData.id, itemUrl).then(() => {
+          console.log("item changed")
+        })
+      }
+    }
+  };
+
   const handleNestClick = () => {
     setVisible(!visible);
   };
@@ -63,6 +81,13 @@ export default function ItemsOwned(props) {
                 <ListItemText
                   primary={item.accessory_name}
                 />
+                <ListItem onClick={changeItem} id={item.accessory_name + " , " + item.accessory_img}
+                  secondaryAction={
+                    <IconButton id={item.accessory_name + " , " + item.id} edge="end" aria-label="delete" >
+                      <AttachMoneyIcon id={item.accessory_name + " , " + item.id} />
+                    </IconButton>
+                  }
+                ></ListItem>
               </ListItemButton>
             ))}
           </List>

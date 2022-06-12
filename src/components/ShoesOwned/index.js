@@ -36,6 +36,24 @@ export default function ShoesOwned(props) {
     getShoes()
   }, [isLoading]);
 
+  const changeShoe = (event) => {
+    const accData = event.target.id
+    const result = accData.split(",")
+    const shoeName = (result[0])
+    const shoeUrl = result[1]
+    console.log(shoeUrl)
+    if (event.target.id) {
+      if (window.confirm(`Are you sure you wish to equip ${shoeName}`)) {
+        console.log('equip function')
+        //Async await the users egg data and inventory data.
+        //Subtract 1 Egg from user data and put hatName into accessory data
+        API.changeShoe(props.loggedInData.id, shoeUrl).then(() => {
+          console.log("shoe changed")
+        })
+      }
+    }
+  };
+
   const handleNestClick = () => {
     setVisible(!visible);
   };
@@ -63,6 +81,13 @@ export default function ShoesOwned(props) {
                 <ListItemText
                   primary={shoe.accessory_name}
                 />
+                 <ListItem onClick={changeShoe} id={shoe.accessory_name + " , " + shoe.accessory_img}
+                  secondaryAction={
+                    <IconButton id={shoe.accessory_name + " , " + shoe.id} edge="end" aria-label="delete" >
+                      <AttachMoneyIcon id={shoe.accessory_name + " , " + shoe.id} />
+                    </IconButton>
+                  }
+                ></ListItem>
               </ListItemButton>
             ))}
           </List>
