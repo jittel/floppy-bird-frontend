@@ -19,23 +19,24 @@ export default function ItemsOwned(props) {
 
   const userID = JSON.parse(localStorage.getItem("user data"))
 
+  function checkItem(num) {
+    return num.CategoryId == 2;
+  }
+
   React.useEffect(() => {
-    // async function getStuff() {
-      API.getOneUser(userID.id).then(res=>{
+    async function getItems() {
+      API.getOneUser(userID.id).then(res => {
         console.log(res)
         return res.json()
       }).then(data => {
-        data.Accessories.forEach(element => {
-          if (element.CategoryId === 2) {
-            setItemInfo([element]);
-            setLoading(false);
-            console.log("item info", itemInfo)
-          }
-        });
+        const itemResult = data.Accessories.filter(checkItem)
+        setItemInfo(itemResult)
+        setLoading(false)
+        console.log(itemInfo)
       })
-    // }
-    // getStuff()
-  }, []);
+    }
+    getItems()
+  }, [isLoading]);
 
   const handleNestClick = () => {
     setVisible(!visible);
@@ -43,45 +44,45 @@ export default function ItemsOwned(props) {
 
   if (isLoading) {
     return <div>Loading</div>
-  }
-
-  return (
-    <List>
-      <ListItemButton onClick={handleNestClick}>
-        <ListItemText primary="Items" />
-        {visible ? <ExpandMore /> : <ExpandLess />}
-      </ListItemButton>
-      {!visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {itemInfo.map((item) => (
-            <ListItemButton sx={{ pl: 2 }} key={item.id}>
-              <ListItemAvatar>
-                <Avatar
-                  alt={item.accessory_name}
-                  src={item.accessory_zoom}
-                  sx={{ width: 56, height: 56 }}
+  } else {
+    return (
+      <List>
+        <ListItemButton onClick={handleNestClick}>
+          <ListItemText primary="Items" />
+          {visible ? <ExpandMore /> : <ExpandLess />}
+        </ListItemButton>
+        {!visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {itemInfo && itemInfo.map((item) => (
+              <ListItemButton sx={{ pl: 2 }} key={item.id}>
+                <ListItemAvatar>
+                  <Avatar
+                    alt={item.accessory_name}
+                    src={item.accessory_zoom}
+                    sx={{ width: 56, height: 56 }}
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={item.accessory_name}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="caption"
+                        color="text.primary"
+                      >
+                        Price:
+                      </Typography>
+                      {item.accessory_price}
+                    </React.Fragment>
+                  }
                 />
-              </ListItemAvatar>
-              <ListItemText
-                primary={item.accessory_name}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="caption"
-                      color="text.primary"
-                    >
-                      Price:
-                    </Typography>
-                    {item.accessory_price}
-                  </React.Fragment>
-                }
-              />
-            </ListItemButton>
-          ))}
-        </List>
-      </Collapse>}
-    </List>
-  );
+              </ListItemButton>
+            ))}
+          </List>
+        </Collapse>}
+      </List>
+    );
+  }
 }
