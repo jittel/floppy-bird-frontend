@@ -17,16 +17,13 @@ export default function ShoesOwned(props) {
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
 
-  const userID = JSON.parse(localStorage.getItem("user data"))
-  console.log("USERid", userID)
-
   function checkShoe(num) {
     return num.CategoryId == 3;
   }
 
   React.useEffect(() => {
     async function getShoes() {
-      API.getOneUser(userID.id).then(res => {
+      API.getOneUser(props.loggedInData.id).then(res => {
         console.log(res)
         return res.json()
       }).then(data => {
