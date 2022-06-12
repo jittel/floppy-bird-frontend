@@ -77,24 +77,11 @@ export default function ItemsOwned(props) {
                   <Avatar
                     alt={item.accessory_name}
                     src={item.accessory_zoom}
-                    sx={{ width: 56, height: 56 }}
+                    sx={{ width: 56, height: 56, mr: 1 }}
                   />
                 </ListItemAvatar>
                 <ListItemText
                   primary={item.accessory_name}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="caption"
-                        color="text.primary"
-                      >
-                        Price:
-                      </Typography>
-                      {item.accessory_price}
-                    </React.Fragment>
-                  }
                 />
                 <ListItem onClick={changeItem} id={item.accessory_name + " , " + item.accessory_img}
                   secondaryAction={

@@ -77,24 +77,11 @@ export default function ShoesOwned(props) {
                   <Avatar
                     alt={shoe.accessory_name}
                     src={shoe.accessory_zoom}
-                    sx={{ width: 56, height: 56 }}
+                    sx={{ width: 56, height: 56, mr: 1 }}
                   />
                 </ListItemAvatar>
                 <ListItemText
                   primary={shoe.accessory_name}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="caption"
-                        color="text.primary"
-                      >
-                        Price:
-                      </Typography>
-                      {shoe.accessory_price}
-                    </React.Fragment>
-                  }
                 />
                 <ListItem onClick={changeShoe} id={shoe.accessory_name + " , " + shoe.accessory_img}
                   secondaryAction={

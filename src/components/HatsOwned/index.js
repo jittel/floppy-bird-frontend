@@ -79,24 +79,11 @@ export default function HatsOwned(props) {
                   <Avatar
                     alt={hat.accessory_name}
                     src={hat.accessory_zoom}
-                    sx={{ width: 56, height: 56 }}
+                    sx={{ width: 56, height: 56, mr: 1 }}
                   />
                 </ListItemAvatar>
                 <ListItemText
                   primary={hat.accessory_name}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="caption"
-                        color="text.primary"
-                      >
-                        Price:
-                      </Typography>
-                      {hat.accessory_price}
-                    </React.Fragment>
-                  }
                 />
                 <ListItem onClick={changeHat} id={hat.accessory_name + " , " + hat.accessory_img}
                   secondaryAction={
