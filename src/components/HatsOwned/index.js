@@ -44,6 +44,24 @@ export default function HatsOwned(props) {
     setVisible(!visible);
   };
 
+  const changeHat = (event) => {
+    const accData = event.target.id
+    const result = accData.split(",")
+    const hatName = (result[0])
+    const hatUrl = result[1]
+    console.log(hatUrl)
+    if (event.target.id) {
+      if (window.confirm(`Are you sure you wish to equip ${hatName}`)) {
+        console.log('equip function')
+        //Async await the users egg data and inventory data.
+        //Subtract 1 Egg from user data and put hatName into accessory data
+        API.changeHat(props.loggedInData.id, hatUrl).then(() => {
+          console.log("hat changed")
+        })
+      }
+    }
+  };
+
   if (isLoading) {
     return <div>Loading</div>
   } else {
@@ -80,6 +98,13 @@ export default function HatsOwned(props) {
                     </React.Fragment>
                   }
                 />
+                <ListItem onClick={changeHat} id={hat.accessory_name + " , " + hat.accessory_img}
+                  secondaryAction={
+                    <IconButton id={hat.accessory_name + " , " + hat.id} edge="end" aria-label="delete" >
+                      <AttachMoneyIcon id={hat.accessory_name + " , " + hat.id} />
+                    </IconButton>
+                  }
+                ></ListItem>
               </ListItemButton>
             ))}
           </List>
@@ -89,27 +114,4 @@ export default function HatsOwned(props) {
   }
 }
 
-// {/* <ListItem onClick={changeHat} id={hat.accessory_name + " , " + hat.accessory_img}
-//                 secondaryAction={
-//                   <IconButton id={hat.accessory_name + " , " + hat.id} edge="end" aria-label="delete" >
-//                     <AttachMoneyIcon id={hat.accessory_name + " , " + hat.id} />
-//                   </IconButton>
-//                 }
-//               ></ListItem> */}
-// const changeHat = (event) => {
-  //   const accData = event.target.id
-  //   const result = accData.split(",")
-  //   const hatName = (result[0])
-  //   const hatUrl = result[1]
-  //   console.log(hatUrl)
-  //   if (event.target.id) {
-  //     if (window.confirm(`Are you sure you wish to purchase ${hatName}for 1 Egg?`)) {
-  //       console.log('purchase function')
-  //       //Async await the users egg data and inventory data.
-  //       //Subtract 1 Egg from user data and put hatName into accessory data
-  //       API.changeHat(userID.id, hatUrl).then(() => {
-  //         // console.log("data updated")
-  //       })
-  //     }
-  //   }
-  // };
+
