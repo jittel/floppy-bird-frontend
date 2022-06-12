@@ -73,7 +73,7 @@ module.exports = {
     },
     changeItem: (chickenId, item) => {
         return axios.put(`${BASE_URL}/api/chickens/${chickenId}`, {
-            "equip_items": item,
+            "equip_arms": item,
         }).then(data => console.log("this the request data", data))
     },
     addAccessory: (userId, accessory) => {
