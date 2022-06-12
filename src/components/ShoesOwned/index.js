@@ -18,24 +18,26 @@ export default function ShoesOwned(props) {
   const [isLoading, setLoading] = React.useState(true);
 
   const userID = JSON.parse(localStorage.getItem("user data"))
+  console.log("USERid", userID)
+
+  function checkShoe(num) {
+    return num.CategoryId == 3;
+  }
 
   React.useEffect(() => {
-    // async function getStuff() {
-      API.getOneUser(userID.id).then(res=>{
+    async function getShoes() {
+      API.getOneUser(userID.id).then(res => {
         console.log(res)
         return res.json()
       }).then(data => {
-        data.Accessories.forEach(element => {
-          if (element.CategoryId === 3) {
-            setShoeInfo([element]);
-            setLoading(false);
-            console.log("shoe info", shoeInfo)
-          }
-        });
+        const shoeResult = data.Accessories.filter(checkShoe)
+        setShoeInfo(shoeResult)
+        setLoading(false)
+        console.log("shoe info", shoeInfo)
       })
-    // }
-    // getStuff()
-  }, []);
+    }
+    getShoes()
+  }, [isLoading]);
 
   const handleNestClick = () => {
     setVisible(!visible);
@@ -43,45 +45,45 @@ export default function ShoesOwned(props) {
 
   if (isLoading) {
     return <div>Loading</div>
-  }
-
-  return (
-    <List>
-      <ListItemButton onClick={handleNestClick}>
-        <ListItemText primary="Shoes" />
-        {visible ? <ExpandMore /> : <ExpandLess />}
-      </ListItemButton>
-      {!visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {shoeInfo.map((shoe) => (
-            <ListItemButton sx={{ pl: 2 }} key={shoe.id}>
-              <ListItemAvatar>
-                <Avatar
-                  alt={shoe.accessory_name}
-                  src={shoe.accessory_zoom}
-                  sx={{ width: 56, height: 56 }}
+  } else {
+    return (
+      <List>
+        <ListItemButton onClick={handleNestClick}>
+          <ListItemText primary="Shoes" />
+          {visible ? <ExpandMore /> : <ExpandLess />}
+        </ListItemButton>
+        {!visible && <Collapse in={!visible} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {shoeInfo && shoeInfo.map((shoe) => (
+              <ListItemButton sx={{ pl: 2 }} key={shoe.id}>
+                <ListItemAvatar>
+                  <Avatar
+                    alt={shoe.accessory_name}
+                    src={shoe.accessory_zoom}
+                    sx={{ width: 56, height: 56 }}
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={shoe.accessory_name}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: 'inline' }}
+                        component="span"
+                        variant="caption"
+                        color="text.primary"
+                      >
+                        Price:
+                      </Typography>
+                      {shoe.accessory_price}
+                    </React.Fragment>
+                  }
                 />
-              </ListItemAvatar>
-              <ListItemText
-                primary={shoe.accessory_name}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="caption"
-                      color="text.primary"
-                    >
-                      Price:
-                    </Typography>
-                    {shoe.accessory_price}
-                  </React.Fragment>
-                }
-              />
-            </ListItemButton>
-          ))}
-        </List>
-      </Collapse>}
-    </List>
-  );
+              </ListItemButton>
+            ))}
+          </List>
+        </Collapse>}
+      </List>
+    );
+  }
 }

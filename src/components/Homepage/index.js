@@ -58,7 +58,7 @@ export default function Homepage(props) {
                     username: data.username,
                     eggs: data.eggs,
                     chicken: {
-                        name: data.Chicken.chicken_name
+                        name: data.chicken.name
                     }
                 })
             }
