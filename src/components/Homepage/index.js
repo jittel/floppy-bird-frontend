@@ -6,7 +6,7 @@ import shoes from "../assets/shoes/index.js";
 import egg from "../assets/egg.png";
 import wheat from "../assets/wheat.png";
 import './Style.css'
-import Accessories from "../Accessories/index.js"
+// import Accessories from "../Accessories/index.js"
 import API from '../../utils/API';
 import {
     useNavigate
@@ -39,11 +39,11 @@ export default function Homepage(props) {
     
 
     let [userData, setUserData] = useState({
-        id: '',
-        username: '',
+        id: props.loggedInData.id,
+        username: props.loggedInData.username,
         eggs: props.loggedInData.eggs,
         chicken: {
-            name: ''
+            name: props.loggedInData.chicken.name
         }
     });
     useEffect(() => {
@@ -89,9 +89,9 @@ export default function Homepage(props) {
                 eggs: userData.eggs + 1
             }))
             document.getElementById("egggg").setAttribute("src", egg)
-        }, 50000)
+        }, 10000)
         API.updateEggs(userData.id, userData.eggs).then(() => {
-            // console.log("data updated")
+            console.log("data updated")
         })
       }, [userData.eggs])
 
