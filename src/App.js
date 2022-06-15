@@ -64,8 +64,6 @@ function App() {
     API.login(loginData).then(data => {
       if (data.token) {
         console.log("is this firing", data.user)
-        localStorage.setItem("token", data.token)
-        localStorage.setItem("user data", JSON.stringify(data.user))
         setLoggedInData({
           id: data.user.id,
           username: data.user.username,
@@ -75,6 +73,8 @@ function App() {
           }
         })
         setToken(data.token)
+        localStorage.setItem("token", data.token)
+        localStorage.setItem("user data", JSON.stringify(data.user))
       }
     })
   }

@@ -38,21 +38,18 @@ export default function Homepage(props) {
         }
     });
     useEffect(() => {
-        const lsData = window.localStorage.getItem("user data");
-        API.getOneUser(props.loggedInData.id).then((data) => {
-            // console.log("data data", data)
-            if (lsData) {
-                setUserData(JSON.parse(lsData))
-            } else {
-                setUserData({
-                    id: data.id,
-                    username: data.username,
-                    eggs: data.eggs,
-                    chicken: {
-                        name: data.chicken.name
-                    }
-                })
-            }
+        API.getOneUser(props.loggedInData.id).then((res) => {
+            return res.json();
+        }).then(data => {
+            // console.log("LOGIN USER DATA", data)
+            setUserData({
+                id: data.id,
+                username: data.username,
+                eggs: data.eggs,
+                chicken: {
+                    name: data.chicken.name
+                }
+            })
         })
 
     }, [])
@@ -149,42 +146,42 @@ export default function Homepage(props) {
     // if (!hatLink) {
     //     return <div>Loading</div>
     // } else {
-        return (
-            <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
+    return (
+        <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }} ref={windowdim}>
 
-                <button className="homeBtn" onClick={() => setIsToggled(isToggled => !isToggled)}>Feed!</button>
+            <button className="homeBtn" onClick={() => setIsToggled(isToggled => !isToggled)}>Feed!</button>
 
-                <div className="eggDiv">
-                    <p className="egg-counter">Egg Count:  {userData.eggs}</p>
+            <div className="eggDiv">
+                <p className="egg-counter">Egg Count:  {userData.eggs}</p>
 
-                    <img id="egggg" src="" onClick={spawnEgg}></img>
-                </div>
-
-                <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
-
-
-                {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
-                <motion.div variants={peckAnim} animate={!isToggled ? "init" : "anim"} transistion="transition" id="chickenCont">
-                    <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
-                    <motion.img
-                        initial={{ y: -500 }}
-                        src={hatLink} className="draggables" id="hat">
-                        {/* src={chicken.equip_hats} */}
-                    </motion.img>
-                    <motion.img
-                        initial={{ y: -285 }}
-                        src={shoeLink} className="draggables" id="shoe">
-                    </motion.img>
-                    <motion.img
-                        initial={{ y: -600 }}
-                        src={itemLink} className="draggables" id="arm">
-                    </motion.img>
-                </motion.div>
-                <motion.img id="wheaties" src={wheat} variants={foodAnim} animate={!isToggled ? "hidden" : "visible"} ></motion.img>
-
+                <img id="egggg" src="" onClick={spawnEgg}></img>
             </div>
 
-        )
+            <h2 className="chick-name">Say hello to: {userData.chicken.name}</h2>
 
-    }
+
+            {/* <motion.div animate={{ y: 100 }} transition={{ yoyo: Infinity }} id="chickenCont"> */}
+            <motion.div variants={peckAnim} animate={!isToggled ? "init" : "anim"} transistion="transition" id="chickenCont">
+                <img src={require("../assets/floppy-bird.png")} alt="yicken" className="chicken" ></img>
+                <motion.img
+                    initial={{ y: -500 }}
+                    src={hatLink} className="draggables" id="hat">
+                    {/* src={chicken.equip_hats} */}
+                </motion.img>
+                <motion.img
+                    initial={{ y: -285 }}
+                    src={shoeLink} className="draggables" id="shoe">
+                </motion.img>
+                <motion.img
+                    initial={{ y: -600 }}
+                    src={itemLink} className="draggables" id="arm">
+                </motion.img>
+            </motion.div>
+            <motion.img id="wheaties" src={wheat} variants={foodAnim} animate={!isToggled ? "hidden" : "visible"} ></motion.img>
+
+        </div>
+
+    )
+
+}
 // }
