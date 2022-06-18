@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import arms from "../assets/arms/index.js";
-import hats from "../assets/hats/index.js";
-import shoes from "../assets/shoes/index.js";
 import egg from "../assets/egg.png";
 import wheat from "../assets/wheat.png";
 import './Style.css'
@@ -26,9 +23,6 @@ export default function Homepage(props) {
 
     const windowdim = useRef(null);
 
-    // const userID = JSON.parse(localStorage.getItem("user data"))
-
-
     let [userData, setUserData] = useState({
         id: props.loggedInData.id,
         username: props.loggedInData.username,
@@ -41,13 +35,13 @@ export default function Homepage(props) {
         API.getOneUser(props.loggedInData.id).then((res) => {
             return res.json();
         }).then(data => {
-            // console.log("LOGIN USER DATA", data)
+            console.log("LOGIN USER DATA", data)
             setUserData({
                 id: data.id,
                 username: data.username,
                 eggs: data.eggs,
                 chicken: {
-                    name: data.chicken.name
+                    name: data.Chicken.chicken_name
                 }
             })
         })
@@ -100,9 +94,6 @@ export default function Homepage(props) {
 
     const [isToggled, setIsToggled] = useState(false)
 
-    // let isFed = false;
-    // let [eggCount, setCount] = useState(0);
-    // if(isFed === false){
     useEffect(() => {
         setTimeout(() => {
             // console.log('time')

@@ -14,12 +14,19 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
 
-export default function HatStore() {
+export default function HatStore(props) {
 
   const [hatInfo, setHatInfo] = React.useState();
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
-  const userID = JSON.parse(localStorage.getItem("user data"))
+  let [userData, setUserData] = React.useState({
+    id: props.loggedInData.id,
+    username: props.loggedInData.username,
+    eggs: props.loggedInData.eggs,
+    chicken: {
+      name: props.loggedInData.chicken.name
+    }
+  });
 
   React.useEffect(() => {
     API.getAllHats().then(data => {
@@ -44,7 +51,15 @@ export default function HatStore() {
         console.log('purchase function')
         //Async await the users egg data and inventory data. 
         //Subtract 1 Egg from user data and put hatName into accessory data
-        API.addAccessory(userID.id, hatId).then(() => {
+        // make a state for user data and update eggs here
+        setUserData(prevState => ({
+          ...prevState,
+          eggs: userData.eggs - 10
+        }))
+        API.updateEggs(userData.id, userData.eggs).then(()=>{
+          console.log("subracted eggs", userData.eggs)
+        })
+        API.addAccessory(props.loggedInData.id, hatId).then(() => {
           console.log(`added hat with id of ${hatId}`)
         })
       }
