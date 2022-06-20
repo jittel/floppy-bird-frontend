@@ -14,12 +14,11 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import API from "../../utils/API";
 import { Typography } from '@mui/material';
 
-export default function ItemStore() {
+export default function ItemStore(props) {
 
   const [itemInfo, setItemInfo] = React.useState();
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
-  const userID = JSON.parse(localStorage.getItem("user data"))
 
   React.useEffect(() => {
     API.getAllItems().then(data => {
@@ -44,7 +43,7 @@ export default function ItemStore() {
         console.log('purchase function')
         //Async await the users egg data and inventory data. 
         //Subtract 1 Egg from user data and put itemName into accessory data
-        API.addAccessory(userID.id, itemId).then(() => {
+        API.addAccessory(props.loggedInData.id, itemId).then(() => {
           console.log(`added item with id of ${itemId}`)
         })
       }

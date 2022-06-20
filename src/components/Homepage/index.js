@@ -48,11 +48,11 @@ export default function Homepage(props) {
 
     }, [])
 
-    useEffect(() => {
-        if (userData) {
-            window.localStorage.setItem("user data", JSON.stringify(userData))
-        }
-    }, [userData])
+    // useEffect(() => {
+    //     if (userData) {
+    //         window.localStorage.setItem("user data", JSON.stringify(userData))
+    //     }
+    // }, [userData])
 
     React.useEffect(() => {
         async function getHat() {

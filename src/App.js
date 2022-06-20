@@ -89,7 +89,7 @@ function App() {
         })
         setToken(data.token)
         localStorage.setItem("token", data.token)
-        localStorage.setItem("user data", JSON.stringify(data.user))
+        // localStorage.setItem("user data", JSON.stringify(data.user))
       }
     })
   }
@@ -97,7 +97,7 @@ function App() {
     console.log("click")
     setToken(null);
     localStorage.removeItem("token")
-    localStorage.removeItem("user data")
+    // localStorage.removeItem("user data")
   }
   // console.log("LOGGED IN DATA", loggedInData)
   return (
