@@ -108,8 +108,8 @@ export default function Homepage(props) {
         },
         visible: {
             opacity: 1,
-            x: 350,
-            y: -500,
+            x: 600,
+            y: -400,
             transistion: { duration: 0.75, type: 'spring', bounce: 0.25 }
 
         }
