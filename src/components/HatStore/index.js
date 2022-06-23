@@ -56,9 +56,15 @@ export default function HatStore(props) {
         //   ...prevState,
         //   eggs: userData.eggs - 10
         // }))
-        API.updateEggs(props.loggedInData.id, (props.loggedInData.eggs - 10)).then(()=>{
-          console.log("subracted eggs")
+        API.getOneUser(props.loggedInData.id).then(res=>{
+          return res.json();
+        }).then(data=>{
+          console.log(data)
+          API.updateEggs(data.id, (data.eggs - 10)).then(()=>{
+            console.log("subracted eggs")
+          })
         })
+        
         API.addAccessory(props.loggedInData.id, hatId).then(() => {
           console.log(`added hat with id of ${hatId}`)
         })

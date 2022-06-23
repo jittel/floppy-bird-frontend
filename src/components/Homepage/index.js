@@ -31,28 +31,6 @@ export default function Homepage(props) {
             name: props.loggedInData.chicken.name
         }
     });
-    // useEffect(() => {
-    //     API.getOneUser(props.loggedInData.id).then((res) => {
-    //         return res.json();
-    //     }).then(data => {
-    //         console.log("LOGIN USER DATA", data)
-    //         setUserData({
-    //             id: data.id,
-    //             username: data.username,
-    //             eggs: data.eggs,
-    //             chicken: {
-    //                 name: data.Chicken.chicken_name
-    //             }
-    //         })
-    //     })
-
-    // }, [])
-
-    // useEffect(() => {
-    //     if (userData) {
-    //         window.localStorage.setItem("user data", JSON.stringify(userData))
-    //     }
-    // }, [userData])
 
     React.useEffect(() => {
         async function getHat() {
@@ -96,16 +74,19 @@ export default function Homepage(props) {
 
     useEffect(() => {
         setTimeout(() => {
-            // console.log('time')
-            setUserData(prevState => ({
-                ...prevState,
-                eggs: userData.eggs + 1
-            }))
+            API.getOneUser(props.loggedInData.id).then(res => {
+                return res.json();
+            }).then(data => {
+                API.updateEggs(data.id, (data.eggs + 1)).then(() => {
+                    console.log("data updated")
+                    setUserData(prevState => ({
+                        ...prevState,
+                        eggs: data.eggs + 1
+                    }))
+                })
+            })
             document.getElementById("egggg").setAttribute("src", egg)
-        }, 100000)
-        API.updateEggs(userData.id, userData.eggs).then(() => {
-            console.log("data updated")
-        })
+        }, 10000)
     }, [userData.eggs])
 
 
