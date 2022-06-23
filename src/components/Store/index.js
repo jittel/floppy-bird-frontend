@@ -26,7 +26,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function Store() {
+export default function Store(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -82,9 +82,9 @@ export default function Store() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <HatStore />
-        <ShoeStore />
-        <ItemStore />
+        <HatStore loggedInData={props.loggedInData} />
+        <ShoeStore loggedInData={props.loggedInData} />
+        <ItemStore loggedInData={props.loggedInData} />
       </Drawer>
     </Box>
   );

@@ -35,17 +35,32 @@ function App() {
       setToken(savedToken)
     }
   }, [])
+
   // useEffect(() => {
   //   if (token) {
-  //     // navigate('./homepage', {replace:true})
-  //     // window.location.replace('/homepage')
-  //     console.log('fuck me')
+  //     API.verify(token).then(res => {
+  //       console.log("stupid result", res)
+  //       // return res.json();
+  //     })
+  //       .then((userData) => {
+  //         console.log("USER DATA", userData)
+  //         if (userData.userId) {
+  //           setIsLoggedIn(true);
+  //           setUserId(userData.userId)
+  //         } else {
+  //           setIsLoggedIn(false);
+  //           setUserId(null)
+  //         }
+  //       })
+  //   } else {
+  //     setIsLoggedIn(false);
+  //     setUserId(null)
   //   }
-  // }, [isLoggedIn])
+  // }, [token])
   useEffect(() => {
     if (token) {
       API.verify(token).then(userData => {
-        // console.log("USER DATA", userData)
+        console.log("data data", userData)
         if (userData.userId) {
           setIsLoggedIn(true);
           setUserId(userData.userId)
@@ -64,8 +79,6 @@ function App() {
     API.login(loginData).then(data => {
       if (data.token) {
         console.log("is this firing", data.user)
-        localStorage.setItem("token", data.token)
-        localStorage.setItem("user data", JSON.stringify(data.user))
         setLoggedInData({
           id: data.user.id,
           username: data.user.username,
@@ -75,6 +88,8 @@ function App() {
           }
         })
         setToken(data.token)
+        localStorage.setItem("token", data.token)
+        // localStorage.setItem("user data", JSON.stringify(data.user))
       }
     })
   }
@@ -82,24 +97,24 @@ function App() {
     console.log("click")
     setToken(null);
     localStorage.removeItem("token")
-    localStorage.removeItem("user data")
+    // localStorage.removeItem("user data")
   }
   // console.log("LOGGED IN DATA", loggedInData)
   return (
     <AuthorizationContext.Provider value={token}>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>Floppy Bird</title>
-        </Helmet>
-        <Routes>
-          {/* note: intro page should be default but right now its set to HomePage for convenience */}
-          <Route path="/" element={<IntroPage />} />
-          <Route path="/homepage" element={<Home userId={userId} loggedInData={loggedInData} logout={logout} />} />
-          <Route path="/login" element={<Login login={handleLoginSubmit} />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/store" element={<Store />} />
-          {/* <Route path="/store/hats" element={<HatStore />} /> */}
-        </Routes>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Floppy Bird</title>
+      </Helmet>
+      <Routes>
+        {/* note: intro page should be default but right now its set to HomePage for convenience */}
+        <Route path="/" element={<IntroPage />} />
+        <Route path="/homepage" element={<Home userId={userId} loggedInData={loggedInData} logout={logout} />} />
+        <Route path="/login" element={<Login login={handleLoginSubmit} />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/store" element={<Store />} />
+        {/* <Route path="/store/hats" element={<HatStore />} /> */}
+      </Routes>
     </AuthorizationContext.Provider>
   )
 }

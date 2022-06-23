@@ -6,7 +6,7 @@ import './style.css';
 export default function Header(props) {
     return (
         <div className='custom-nav'>
-            <Store />
+            <Store loggedInData={props.loggedInData} />
             <Accessories loggedInData={props.loggedInData} />
         </div>
     )
