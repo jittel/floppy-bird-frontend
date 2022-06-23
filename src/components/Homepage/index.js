@@ -31,22 +31,22 @@ export default function Homepage(props) {
             name: props.loggedInData.chicken.name
         }
     });
-    useEffect(() => {
-        API.getOneUser(props.loggedInData.id).then((res) => {
-            return res.json();
-        }).then(data => {
-            console.log("LOGIN USER DATA", data)
-            setUserData({
-                id: data.id,
-                username: data.username,
-                eggs: data.eggs,
-                chicken: {
-                    name: data.Chicken.chicken_name
-                }
-            })
-        })
+    // useEffect(() => {
+    //     API.getOneUser(props.loggedInData.id).then((res) => {
+    //         return res.json();
+    //     }).then(data => {
+    //         console.log("LOGIN USER DATA", data)
+    //         setUserData({
+    //             id: data.id,
+    //             username: data.username,
+    //             eggs: data.eggs,
+    //             chicken: {
+    //                 name: data.Chicken.chicken_name
+    //             }
+    //         })
+    //     })
 
-    }, [])
+    // }, [])
 
     // useEffect(() => {
     //     if (userData) {
@@ -102,7 +102,7 @@ export default function Homepage(props) {
                 eggs: userData.eggs + 1
             }))
             document.getElementById("egggg").setAttribute("src", egg)
-        }, 10000)
+        }, 100000)
         API.updateEggs(userData.id, userData.eggs).then(() => {
             console.log("data updated")
         })
