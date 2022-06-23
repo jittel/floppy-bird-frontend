@@ -19,14 +19,6 @@ export default function HatStore(props) {
   const [hatInfo, setHatInfo] = React.useState();
   const [visible, setVisible] = React.useState(true);
   const [isLoading, setLoading] = React.useState(true);
-  // let [userData, setUserData] = React.useState({
-  //   id: props.loggedInData.id,
-  //   username: props.loggedInData.username,
-  //   eggs: props.loggedInData.eggs,
-  //   chicken: {
-  //     name: props.loggedInData.chicken.name
-  //   }
-  // });
 
   React.useEffect(() => {
     API.getAllHats().then(data => {
@@ -49,13 +41,6 @@ export default function HatStore(props) {
     if (event.target.id) {
       if (window.confirm(`Are you sure you wish to purchase ${hatName} for 10 eggs?`)) {
         console.log('purchase function')
-        //Async await the users egg data and inventory data. 
-        //Subtract 1 Egg from user data and put hatName into accessory data
-        // make a state for user data and update eggs here
-        // setUserData(prevState => ({
-        //   ...prevState,
-        //   eggs: userData.eggs - 10
-        // }))
         API.getOneUser(props.loggedInData.id).then(res=>{
           return res.json();
         }).then(data=>{
@@ -63,8 +48,7 @@ export default function HatStore(props) {
           API.updateEggs(data.id, (data.eggs - 10)).then(()=>{
             console.log("subracted eggs")
           })
-        })
-        
+        })  
         API.addAccessory(props.loggedInData.id, hatId).then(() => {
           console.log(`added hat with id of ${hatId}`)
         })

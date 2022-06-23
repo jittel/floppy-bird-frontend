@@ -41,8 +41,14 @@ export default function ShoeStore(props) {
     if (event.target.id) {
       if (window.confirm(`Are you sure you wish to purchase ${shoeName} for 15 eggs?`)) {
         console.log('purchase function')
-        //Async await the users egg data and inventory data. 
-        //Subtract 1 Egg from user data and put shoeName into accessory data
+        API.getOneUser(props.loggedInData.id).then(res=>{
+          return res.json();
+        }).then(data=>{
+          console.log(data)
+          API.updateEggs(data.id, (data.eggs - 15)).then(()=>{
+            console.log("subracted eggs")
+          })
+        })
         API.addAccessory(props.loggedInData.id, shoeId).then(() => {
           console.log(`added shoe with id of ${shoeId}`)
         })
