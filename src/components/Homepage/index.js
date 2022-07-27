@@ -115,7 +115,7 @@ export default function Homepage(props) {
         }
     }
 
-    // if (!hatLink) {
+    // if (!props.loggedInData.id) {
     //     return <div>Loading</div>
     // } else {
     return (

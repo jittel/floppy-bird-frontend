@@ -76,6 +76,7 @@ function App() {
   }, [token])
   const handleLoginSubmit = loginData => {
     console.log("handle login", loginData)
+    // debugger;
     API.login(loginData).then(data => {
       if (data.token) {
         console.log("is this firing", data.user)

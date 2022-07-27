@@ -45,6 +45,7 @@ export default function HatStore(props) {
           return res.json();
         }).then(data=>{
           console.log(data)
+          // add a check here to see if they have enough eggs
           API.updateEggs(data.id, (data.eggs - 10)).then(()=>{
             console.log("subracted eggs")
           })
